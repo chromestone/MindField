@@ -1,0 +1,2868 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--  default/layout/scripts/article -->
+				
+		<meta http-equiv="X-UA-Compatible" content="IE=EDGE">		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />-->
+	<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/detect.js"></script>
+	<link rel="stylesheet" type="text/css" href="./Cruising With Topspeed | Dr Dobb&#39;s_files/poll.css">
+		
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/jquery.min.js"></script>
+
+<title>Cruising With Topspeed | Dr Dobb's</title><meta name="description" content="TopSpeed C launches JPI into the C arena.  Alex puts the package under the  Doctor&#39;s microscope, paying special attention to the C Techkit, and has  some fun in the process.">
+<meta name="headline" content="Cruising With Topspeed">
+<meta name="news_keywords" content="software development, source code, Architecture &amp; Design, Eclipse &amp; Open Source, Windows/.NET, Database, Testing &amp; Debugging, SOA, Web Services &amp; XML, Mobility">
+<meta name="created" content="April 01, 1990">
+<meta name="google-site-verification" content="HqG7-1r7RoBTg-CKrClDy746Njj0o8y-9CgeYSK4CyM">
+<meta name="original-source" content="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335">
+<meta property="og:title" content="Cruising With Topspeed">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335">
+<meta property="og:image" content="http://i.techweb.com/ddj/sourcecode/archive/1990/9004.zip">
+<meta property="og:site_name" content="Dr. Dobb&#39;s">
+<meta property="og:description" content="TopSpeed C launches JPI into the C arena.  Alex puts the package under the  Doctor&#39;s microscope, paying special attention to the C Techkit, and has  some fun in the process.">
+<meta property="fb:admins" content="550301723,1033888255">
+<meta property="fb:page_id" content="17631669579">
+<meta property="twitter:card" content="summary">
+<meta property="twitter:site" content="@dr_dobbs">
+<meta property="twitter:title" content="Cruising With Topspeed">
+<meta property="twitter:description" content="TopSpeed C launches JPI into the C arena.  Alex puts the package under the  Doctor&#39;s microscope, paying special attention to the C Techkit, and has  some fun in the process.">
+<meta property="twitter:creator" content="@dr_dobbs">
+<meta property="twitter:url" content="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335">
+<meta property="twitter:image:src" content="http://i.techweb.com/ddj/sourcecode/archive/1990/9004.zip">
+<meta property="twitter:domain" content="http://www.drdobbs.com"> 
+	<link rel="image_src" href="http://twimgs.com/ddj/v2/images/fb_thumbnail.jpg">
+	<link rel="stylesheet" href="./Cruising With Topspeed | Dr Dobb&#39;s_files/thickbox.css">
+	<link rel="stylesheet" href="./Cruising With Topspeed | Dr Dobb&#39;s_files/style.css">
+	<link rel="SHORTCUT ICON" href="http://twimgs.com/ddj/v2/images/favicon.ico">
+	
+
+<!--	<script language="JavaScript" type="text/javascript" src="http://twimgs.com/nc/mt/js/jquery-1.2.6.min.js"></script>-->
+	
+	<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/at.js"></script>
+	<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/jquery-ui-1.8rc3.custom.min.js"></script>
+	
+	<script language="JavaScript" type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/sidebar.js"></script>
+	<script language="JavaScript" type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/thickbox.js"></script>
+	<script language="JavaScript" type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/togglediv.js"></script>
+
+	<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/addthis_widget.js"></script>
+	<script language="JavaScript" type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/scripts.js"></script>
+	<script language="JavaScript" type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/popwindow.js"></script>
+
+	
+	
+	<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/plusone.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="./Cruising With Topspeed | Dr Dobb&#39;s_files/h-nav.css">     
+	<link rel="stylesheet" href="./Cruising With Topspeed | Dr Dobb&#39;s_files/devtest_style.css">
+	<style>
+		#container #header #nav { font-size: .9em; margin-top: 0px; margin-left: 5px; width: 999px; position: relative; top: 4px;  } /* Absolutely positioned #nav is lower on homepage, see home.css */
+		
+	@media screen and (max-width : 320px) {
+		#techwebCommentLogin {
+		    border-radius: 10px 10px 10px 10px;
+		    width: 275px !important;
+		}
+		.subsection.best {
+		    float: none !important;
+		}
+		.doublepage .dcol2 {
+		    width: auto !important;
+		}
+	}
+	</style>
+<link href="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335" rel="canonical">
+<link href="http://www.drdobbs.com/rss/all" rel="alternate" type="application/rss+xml" title="Dr. Dobb&#39;s All Articles">
+<link href="http://www.drdobbs.com/rss/all" rel="alternate" type="application/rss+xml" title="Dr. Dobb&#39;s All Articles">
+<link href="./Cruising With Topspeed | Dr Dobb&#39;s_files/tabs.css" media="screen" rel="stylesheet" type="text/css">
+<link href="./Cruising With Topspeed | Dr Dobb&#39;s_files/devtest_left-col-slim.css" media="screen" rel="stylesheet" type="text/css">
+<link href="./Cruising With Topspeed | Dr Dobb&#39;s_files/twlightbox.css" media="screen" rel="stylesheet" type="text/css"><script type="text/javascript">
+    //<![CDATA[
+$.ajax({
+	   type: "GET",
+	   url: "/checkauth",
+	   data: {"referer": encodeURIComponent(document.referrer), "redirectTo": encodeURIComponent(window.location.href)},
+	   success: function(data){
+		   if (data != null)
+			{
+				window.location = data.redirectTo;
+			}
+	   },
+	   dataType: "json",
+	   async: false,
+	   cache: false
+	 });    //]]>
+</script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/jquery.url.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/md5_hash.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/twlightbox.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/nextgen.js"></script>
+
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function() {
+    			$.ajax({
+			  url: "/index/welcome",
+			  type: 'POST',
+			  data: {"redirectTo": encodeURIComponent(window.location.href) , "refferURL":"http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335"},
+			  success: function(data) {			  
+			    $('.welcome').html(data);
+			    $('.welcome').nextGenInit({				
+					width: 780,
+					siteUrlPrefix:'',
+					siteRedirectPrefix: ''
+				});
+			  }
+			});
+});
+//]]>
+
+</script><script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/custom_tracking.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#nav2 a,.main-menu a,#h-nav_main a,#h-nav a,#tw_superfooter_936 a,.articles.archive a,.subsection.mostpopular a,.articles.no-border a,.article-resources.wrap a,.recent-articles a,.related-resources.first.tabs a,.related-resources.tabs a,.related-resources.first a,.related-resources a,#footergrey a').click
+		(function(event){		
+			itc_tracking($(this),event);		
+		});		
+	});
+</script><script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-33304291-1']);
+        _gaq.push(['_setDomainName', 'drdobbs.com']);
+	_gaq.push(['_trackPageview']);
+		(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+	<!-- Start: GPT Sync -->
+<script type="text/javascript">
+ var gptadslots=[];
+ (function(){
+  var useSSL = 'https:' == document.location.protocol;
+  var src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+  document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+ })();
+</script>
+
+<script type="text/javascript">
+
+
+ googletag.pubads().setTargeting('kw',['']);
+ googletag.pubads().setTargeting('aid',['184408335']);
+ googletag.pubads().setTargeting('tax',['C++']);
+			if (document.documentElement.clientWidth > 767){
+			gptadslots[1]=googletag.defineSlot('/2441/DrDobbs/cpp',[[2,2]],'div-gpt-ad-942957474691236830-1')
+.addService(googletag.pubads())
+.setTargeting('pos',['welcome']);
+			}
+			else {
+			gptadslots[30]=googletag.defineSlot('/2441/DrDobbs/cpp',[[7,7]],'div-gpt-ad-942957474691236830-30')
+.addService(googletag.pubads())
+.setTargeting('pos',['mi']);
+			}
+						if (document.documentElement.clientWidth > 1027){
+			gptadslots[2]=googletag.defineSlot('/2441/DrDobbs/cpp',[[1,2]],'div-gpt-ad-942957474691236830-2')
+.addService(googletag.pubads())
+.setTargeting('pos',['wallpaper']);
+			}
+						if (document.documentElement.clientWidth > 767){
+			gptadslots[3]=googletag.defineSlot('/2441/DrDobbs/cpp',[[728,90],[970,250]],'div-gpt-ad-942957474691236830-3')
+.addService(googletag.pubads())
+.setTargeting('pos',['top']);
+			}
+			gptadslots[4]=googletag.defineSlot('/2441/DrDobbs/cpp',[[300,250],[300,600],[336,280],[336,850]],'div-gpt-ad-942957474691236830-4')
+.addService(googletag.pubads())
+.setTargeting('pos',['rec1']);
+gptadslots[5]=googletag.defineSlot('/2441/DrDobbs/cpp',[[300,250],[300,600],[336,280],[336,850]],'div-gpt-ad-942957474691236830-5')
+.addService(googletag.pubads())
+.setTargeting('pos',['rec2']);
+gptadslots[28]=googletag.defineSlot('/2441/DrDobbs/cpp',[[160,600]],'div-gpt-ad-942957474691236830-28')
+.addService(googletag.pubads())
+.setTargeting('pos',['sky']);
+gptadslots[24]=googletag.defineSlot('/2441/DrDobbs/cpp',[[1,1]],'div-gpt-ad-942957474691236830-24')
+.addService(googletag.pubads())
+.setTargeting('pos',['infolink1']);
+gptadslots[25]=googletag.defineSlot('/2441/DrDobbs/cpp',[[1,1]],'div-gpt-ad-942957474691236830-25')
+.addService(googletag.pubads())
+.setTargeting('pos',['infolink2']);
+gptadslots[26]=googletag.defineSlot('/2441/DrDobbs/cpp',[[1,1]],'div-gpt-ad-942957474691236830-26')
+.addService(googletag.pubads())
+.setTargeting('pos',['infolink3']);
+gptadslots[27]=googletag.defineSlot('/2441/DrDobbs/cpp',[[1,1]],'div-gpt-ad-942957474691236830-27')
+.addService(googletag.pubads())
+.setTargeting('pos',['infolink4']);
+gptadslots[29]=googletag.defineSlot('/2441/DrDobbs/cpp',[[4,4]],'div-gpt-ad-942957474691236830-29')
+.addService(googletag.pubads())
+.setTargeting('pos',['video']);
+googletag.pubads().enableSingleRequest();
+googletag.pubads().enableSyncRendering();
+googletag.enableServices();
+</script>	<meta name="pagecaching" content="943"><meta name="node" content="104">	<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/tabbed-content.jquery.js"></script>
+		<script language="JavaScript" type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/contentgating.js"></script>	<script type="text/javascript">
+	var _vwo_code=(function(){
+	var account_id=32069,
+	settings_tolerance=2000,
+	library_tolerance=1500,
+	use_existing_jquery=false,
+	// DO NOT EDIT BELOW THIS LINE
+	f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&r='+Math.random());var a=d.createElement('style'),b='body{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
+</script>
+	
+	<link rel="stylesheet" href="./Cruising With Topspeed | Dr Dobb&#39;s_files/mobile.css">	
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '832000476880185');
+  fbq('track', 'PageView');
+</script>
+<noscript></noscript></head><body bgcolor="FFFFFF"><img height="1" width="1" style="display: none !important;" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/tr" hidden="">
+<!-- End Facebook Pixel Code -->
+
+			<div id="div-gpt-ad-942957474691236830-1">
+			<script type="text/javascript">
+				googletag.display('div-gpt-ad-942957474691236830-1');
+			</script>
+		</div>
+				<div id="div-gpt-ad-942957474691236830-30">
+			<script type="text/javascript">
+				googletag.display('div-gpt-ad-942957474691236830-30');
+			</script>
+		</div>
+	<div id="topAdContainer">
+			<div id="div-gpt-ad-942957474691236830-2">
+			<script type="text/javascript">
+				googletag.display('div-gpt-ad-942957474691236830-2');
+			</script>
+		</div>
+	</div>
+<div id="container">
+	<style>
+		#login, #login a, #login strong { color: white;  font-weight: bold; font-size:12px;} 
+</style>
+
+
+<div id="login" class="welcome" style="padding-left: 12px;">	
+	<!-- load dynamically -->
+</div>	<div id="header">	   
+	   <!-- h-nav -->
+	  <header>  <div id="h-nav">
+	  <nav>
+	    	<ul>
+			<li><a href="http://www.drdobbs.com/subscribe/">Subscribe</a></li>
+		    <li><a href="http://www.informationweek.com/profile.asp?update_newsletter=t">Newsletters</a></li>
+			<li><a href="http://www.informationweek.com/whitepaper/topic/developer">Digital Library</a></li>
+			<li><a href="http://www.drdobbs.com/rss/">RSS</a></li>
+			</ul>	
+		</nav>					
+		</div>
+    	<!-- / h-nav -->
+		
+	<div id="search">
+		<script language="JavaScript" type="text/javascript">
+<!--
+	$(
+		function()
+		{ 	 
+			$('input.search')
+				.click(
+					function()
+					{
+						queryText = $('input#queryText').val();
+						queryText = queryText.replace(/^\s*/, '').replace(/\s*$/, ''); 
+						if (!queryText)
+						{
+							return false;
+						}
+					}
+				)
+				.attr('disabled', false);
+			
+		}
+	);
+//-->
+</script>
+
+<form method="get" action="http://www.drdobbs.com/sitesearch">
+	<input type="hidden" name="sort" value="publishDate desc">
+	<ul>
+		<li><input type="text" value="" size="40" id="queryText" name="queryText" maxlength="100" class="text"></li>
+		<li><input type="submit" value=" " class="search" disabled="true"></li>
+	</ul>
+	Search: 
+	<input type="radio" name="type" value="site" checked=""> Site
+	<input type="radio" name="type" value="sourcecode"> Source Code
+</form>	</div>
+	<br><br>
+
+		<div id="h-nav_main">
+ 	
+<div id="h-nav_mainSection">
+<!-- main section indicator -->
+<nav>
+<ul class="navigation">
+  <li class="h-58"><a name="ddj-header-navbar-home" href="http://www.drdobbs.com/" class="h-58" style="float:left">Home</a></li><li class="h-68"><a name="ddj-header-navbar-articles" href="http://www.drdobbs.com/articles" class="h-68" style="float:left">Articles</a></li><li class="h-58"><a name="ddj-header-navbar-news" href="http://www.drdobbs.com/news" class="h-58" style="float:left">News</a></li><li class="h-58"><a name="ddj-header-navbar-blogs" href="http://www.drdobbs.com/blogs" class="h-58" style="float:left">Blogs</a></li><li class="h-108"><a name="ddj-header-navbar-sourcecode" href="http://www.drdobbs.com/sourcecode" class="h-108" style="float:left">Source Code</a></li><li class="h-88"><a name="ddj-header-navbar-tv" href="http://www.drdobbs.com/tv" class="h-88" style="float:left">Dobb's TV</a></li><li class="h-148"><a name="ddj-header-navbar-webinars" href="http://www.informationweek.com/events/d/d-id/898857" class="h-148" style="float:left">Webinars &amp; Events</a></li> 
+</ul>
+</nav>
+</div><div id="clearLeft"></div>
+<!-- / main section indicator -->
+<!-- header social icons -->
+  <div id="h-nav_social">	 	
+  	<ul>
+	<li><a href="http://www.facebook.com/pages/Dr-Dobbs/17631669579" style="float:left"><img src="./Cruising With Topspeed | Dr Dobb&#39;s_files/h-facebook_sm.png" alt="Facebook" border="0"></a></li>
+	<li><a href="http://twitter.com/dr_dobbs" style="float:left"><img src="./Cruising With Topspeed | Dr Dobb&#39;s_files/h-twitter_sm.png" alt="Twitter" border="0"></a></li>
+  	</ul>
+  </div>		
+<!-- / header social icons -->
+
+
+ <!-- go parallel indicator -->
+ <!-- <div id="h-nav_goParallel">	 	
+	<ul>  
+	 <li class="h-88">
+	<a title="Go Parallel" class="gp" href="/go-parallel/" name="ddj-header-navbar-goparallel" style="float:right">Go Parallel</a>
+	</li>
+	</ul>
+  </div>  -->
+ <!-- / go parallel indicator -->
+
+<div id="h-nav_mainSection-mobile" class="mobile-unit">	
+	        <a>Sections<i>&nbsp;▼</i></a>
+				<ul class="unstyled">				
+				     <li class="h-58"><a name="ddj-header-navbar-home" href="http://www.drdobbs.com/" class="h-58">Home</a></li><li class="h-68"><a name="ddj-header-navbar-articles" href="http://www.drdobbs.com/articles" class="h-68">Articles</a></li><li class="h-58"><a name="ddj-header-navbar-news" href="http://www.drdobbs.com/news" class="h-58">News</a></li><li class="h-58"><a name="ddj-header-navbar-blogs" href="http://www.drdobbs.com/blogs" class="h-58">Blogs</a></li><li class="h-108"><a name="ddj-header-navbar-sourcecode" href="http://www.drdobbs.com/sourcecode" class="h-108">Source Code</a></li><li class="h-88"><a name="ddj-header-navbar-tv" href="http://www.drdobbs.com/tv" class="h-88">Dobb's TV</a></li><li class="h-148"><a name="ddj-header-navbar-webinars" href="http://www.informationweek.com/events/d/d-id/898857" class="h-148">Webinars &amp; Events</a></li> 			    
+                </ul>	
+</div>  
+  
+  
+</div><!-- / h-nav_main -->
+<script type="application/javascript">
+    //events listing in universal header    
+	$("div#h-nav_mainSection-mobile").hover(function() {
+        $("div#h-nav_mainSection-mobile").children('ul').slideDown(200);        
+	}, function() {
+        $("div#h-nav_mainSection-mobile").children('ul').fadeOut(100);        
+	}); 
+</script>
+
+		<script type="text/javascript">
+var eventKey = "tw_dev2013";
+var eventValue = "01";
+document.write('<scr'+'ipt language="javascript1.1" src="http://adserver.adtechus.com/bind?ckey1='+eventKey+';cvalue1='+escape(eventValue.toLowerCase())+'; expiresDays=9125;adct=text/html;misc=123"></scri'+'pt>');
+</script>
+
+
+</header>
+<br>
+</div>
+	<div id="subnav">
+	<div id="nav2">
+	<nav>
+		<ul class="navigation">
+		
+		 <li><a href="http://www.drdobbs.com/cloud" style="float:left;" name="ddj-channel-navbar-cloud">Cloud</a></li><li><a href="http://www.drdobbs.com/mobile" style="float:left;" name="ddj-channel-navbar-mobile">Mobile</a></li><li><a href="http://www.drdobbs.com/parallel" style="float:left;" name="ddj-channel-navbar-parallel">Parallel</a></li><li><a href="http://www.drdobbs.com/windows" style="float:left;" name="ddj-channel-navbar-windows">.NET</a></li><li><a href="http://www.drdobbs.com/jvm" style="float:left;" name="ddj-channel-navbar-jvm">JVM Languages</a></li><li><a href="http://www.drdobbs.com/cpp" style="float:left;" class="channelActive" name="ddj-channel-navbar-cpp">C/C++</a></li><li><a href="http://www.drdobbs.com/tools" style="float:left;" name="ddj-channel-navbar-tools">Tools</a></li><li><a href="http://www.drdobbs.com/architecture-and-design" style="float:left;" name="ddj-channel-navbar-architecture-and-design">Design</a></li><li><a href="http://www.drdobbs.com/testing" style="float:left;" name="ddj-channel-navbar-testing">Testing</a></li><li><a href="http://www.drdobbs.com/web-development" style="float:left;" name="ddj-channel-navbar-web-development">Web Dev</a></li><li class="lastitem"><a href="http://www.drdobbs.com/joltawards" style="float:left;" name="ddj-channel-navbar-joltawards">Jolt Awards</a></li> 
+</ul>
+</nav>
+</div>	 <!-- End: nav2 --> 
+</div><!-- End: subnav -->	
+<div id="h-nav2_mainSection-mobile" class="mobile-unit">	
+	        <a>Channels<i>&nbsp;▼</i></a>
+				<ul class="unstyled">				
+				      <li><a href="http://www.drdobbs.com/cloud" name="ddj-channel-navbar-cloud">Cloud</a></li><li><a href="http://www.drdobbs.com/mobile" name="ddj-channel-navbar-mobile">Mobile</a></li><li><a href="http://www.drdobbs.com/parallel" name="ddj-channel-navbar-parallel">Parallel</a></li><li><a href="http://www.drdobbs.com/windows" name="ddj-channel-navbar-windows">.NET</a></li><li><a href="http://www.drdobbs.com/jvm" name="ddj-channel-navbar-jvm">JVM Languages</a></li><li><a href="http://www.drdobbs.com/cpp" class="channelActive" name="ddj-channel-navbar-cpp">C/C++</a></li><li><a href="http://www.drdobbs.com/tools" name="ddj-channel-navbar-tools">Tools</a></li><li><a href="http://www.drdobbs.com/architecture-and-design" name="ddj-channel-navbar-architecture-and-design">Design</a></li><li><a href="http://www.drdobbs.com/testing" name="ddj-channel-navbar-testing">Testing</a></li><li><a href="http://www.drdobbs.com/web-development" name="ddj-channel-navbar-web-development">Web Dev</a></li><li class="lastitem"><a href="http://www.drdobbs.com/joltawards" name="ddj-channel-navbar-joltawards">Jolt Awards</a></li> 				    
+				    
+				    
+                </ul>	
+</div>  	
+<script type="application/javascript">
+    //events listing in universal header    
+	$("div#h-nav2_mainSection-mobile").hover(function() {
+        $("div#h-nav2_mainSection-mobile").children('ul').slideDown(200);        
+	}, function() {
+        $("div#h-nav2_mainSection-mobile").children('ul').fadeOut(100);        
+	}); 
+</script>	
+	<div id="leaderboard2">
+		<div style="margin: 0 auto 0 auto; width: 728px;">			<div id="div-gpt-ad-942957474691236830-3">
+			<script type="text/javascript">
+				googletag.display('div-gpt-ad-942957474691236830-3');
+			</script>
+		</div>
+	</div>
+	</div>
+	
+	<div id="columns">
+		
+		<div id="content">
+			<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shLegacy.js"></script>
+<!--<script type="text/javascript" src="http://i.cmpnet.com/ddj/v2/syntaxhighlighter/scripts/shCore.js"></script> -->
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shCore_new.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushXml.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushVb.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushSql.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushScala.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushSass.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushRuby.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushPython.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushPowerShell.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushPlain.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushPhp.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushPerl.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushJScript.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushJavaFX.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushJava.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushGroovy.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushErlang.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushDiff.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushDelphi.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushCss.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushCSharp.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushCpp.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushColdFusion.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushBash.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushAS3.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shBrushAppleScript.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/shAutoloader.js"></script>
+
+
+
+<link href="./Cruising With Topspeed | Dr Dobb&#39;s_files/shThemeDefault.css" rel="stylesheet" type="text/css">
+<link href="./Cruising With Topspeed | Dr Dobb&#39;s_files/shCoreDefault.css" rel="stylesheet" type="text/css">
+<link href="./Cruising With Topspeed | Dr Dobb&#39;s_files/shCore.css" rel="stylesheet" type="text/css">
+<script>var ngGatedContentPage = '1';</script>
+<style>
+syntaxhighlighter {
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    overflow-x: auto;
+    overflow-y: auto;
+    width: 450px;
+}
+</style>
+<div class="articles no-border">
+ 	<span id="rss" style="float: right; margin-bottom: 3px;">
+        <a href="http://www.drdobbs.com/rss/cpp"><img alt="RSS" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/rss.gif"></a>
+
+    </span>
+
+				<h2>C/C++</h2>
+		<div class="sharing-tools">	 
+	<div class="share-index"> 
+				<div style="float: left; margin-right: 40px;" class="share-tweet">
+		    <!-- BEGIN TWEET BUTTON --><a href="https://twitter.com/share" class="twitter-share-button" data-counturl="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335" data-url="http://www.drdobbs.comhttps://ubm.io/NITYec" data-text="Cruising With Topspeed" data-via="dr_dobbs" data-related="dr_dobbs">Tweet</a><script type="text/javascript" charset="utf-8">window.twttr = (function (d,s,id) {var t, js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return; js=d.createElement(s); js.id=id;js.src="//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });}(document, "script", "twitter-wjs"));
+twttr.ready(function (twttr) {
+	twttr.events.bind('tweet', function(event) {
+		var tweet_id = event.data.tweet_id;
+		var user_id = event.data.user_id;
+		var screen_name = event.data.screen_name;
+		var s=s_gi('cmpglobalvista');
+		s.evar33=tweet_id;
+		s.evar34='Twitter '+screen_name+' | '+user_id;
+		s.events='event10';
+		s.tl(this,'o','Twitter Tweet Submitted by User');
+	});
+	twttr.events.bind('follow', function(event) {
+		var followed_user_id = event.data.user_id;
+		var followed_screen_name = event.data.screen_name;
+		var s=s_gi('cmpglobalvista');
+		s.evar34='Twitter '+followed_screen_name+'| '+followed_user_id ;
+		s.events='event11';
+		s.tl(this,'o','Twitter Account Followed by User');
+	});
+});
+    </script><!-- END TWEET BUTTON -->
+	
+        </div>						 
+        					 
+		<!-- BEGIN FB LIKE  -->
+				<div style="float: left; margin-right: 5px;" class="share-facebook-likes">    	 
+			
+		<script>
+				
+				( function(d, s, id) {
+					  var js, fjs = d.getElementsByTagName(s)[0];
+					  if (d.getElementById(id)) return;
+					  js = d.createElement(s); js.id = id;
+					  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+					  fjs.parentNode.insertBefore(js, fjs);
+				}
+				(document, 'script', 'facebook-jssdk'));</script>
+        <fb:like send="false" action="like" layout="button_count" href="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335" width="450" show_faces="true"></fb:like>
+			
+		</div>
+		        <!-- END FB LIKE  --> 
+        		<!-- Linked In Button -->
+		<div class="share-tweet" style="float: left; margin-right: 6px;">
+		<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/in.js"></script>
+		<script type="in/share" data-url="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335"></script>
+		</div>
+		<!-- Linked In Button -->
+		<!-- Google +1 Button -->
+		<div style="float: left; margin-right: 2px;">
+		<g:plusone size="small" count="false"></g:plusone>
+		</div>
+		<!-- Google +1 Button -->		
+				
+		<div class="addthis_toolbox addthis_pill_combo_style" addthis:url="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335">
+						<a style="cursor: pointer;" class="addthis_button_stumbleupon at300b" href="http://www.addthis.com/bookmark.php?v=250&amp;winname=addthis&amp;pub=Dr.Dobbs&amp;source=tbx-250&amp;lng=en-US&amp;s=stumbleupon&amp;url=http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335&amp;title=Cruising%20With%20Topspeed&amp;ate=AT-Dr.Dobbs/-/fs-0/4d4fc3809f4d8545/1&amp;sms_ss=1&amp;at_xt=1&amp;CXNID=2000001.5215456080540439074NXC&amp;pre=http%3A%2F%2Fwww.drdobbs.com%2F&amp;tt=0" target="_blank" title="Send to StumbleUpon"> <span class="at300bs at15t_stumbleupon"></span></a>
+			<a class="addthis_button_reddit" style="cursor:pointer"></a>			
+						
+			<a title="Send As Email" href="javascript:emailLauncher(&#39;/email?articleUrl=&#39;,&#39;/cpp/cruising-with-topspeed/184408335&#39;)" class="addthis_default_style"><img hspace="0" border="0" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/share_email_icon.gif"></a> 
+			<a href="http://www.drdobbs.com/article/print?articleId=184408335&amp;siteSectionName=cpp" class="addthis_default_style"><img hspace="4" border="0" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/share_print_icon.gif"></a>
+			<a href="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335#" class="addthis_permalink">Permalink</a>
+			<div class="atclear"></div>
+		</div>
+		<script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+		<script src="./Cruising With Topspeed | Dr Dobb&#39;s_files/addthis_widget.js" type="text/javascript"></script>
+		<!-- AddThis Button END -->		
+	</div>
+	<div style="clear: both;"></div>			
+</div>
+
+<script>
+function emailLauncher(filePath,storyURL) {	
+	uri = filePath + encodeURIComponent(storyURL);
+	window.open(uri,"","toolbar=no,scrollbars=auto,location=no,status=no,width=733,height=590,resizable=1");
+}
+</script>	
+
+<div id="article-header">
+<h1 class="story-title">Cruising With Topspeed</h1>
+<p class="byline">
+By 							<span class="byline">Alex Lane</span>, April 01, 1990</p>
+<p class="byline-comments"><span>
+<a href="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335#disqus_thread" class="commentLink" data-disqus-identifier="article_184408335"></a>
+ 
+</span></p>
+
+
+<style>
+<!--
+#sourcecode {
+    border-bottom: 1px solid #6BA542;
+    border-right: 1px solid #6BA542;
+    display: table;
+    float: left;
+    margin: 0 15px 10px 0;
+    padding-bottom: 10px;
+    width: 100%;
+}
+h4 {
+    background: none repeat scroll 0 0 #6BA542;
+    color: #FFFFFF;
+    font-size: 13px;
+    line-height: 20px;
+    padding: 0 5px;
+}
+-->
+</style>
+
+<div id="sourcecode">
+	<h4>Source Code Accompanies This Article. Download It Now.</h4>
+	<ul>
+					<li>
+				<a href="http://www.drdobbs.com/cpp/cruising-with-topspeed/cpp/sourcecode/cruising-with-topspeed/30401066">lane.lst</a>
+			</li>
+			</ul>
+</div>	
+<font class="story-teaser">TopSpeed C launches JPI into the C arena.  Alex puts the package under the  Doctor's microscope, paying special attention to the C Techkit, and has  some fun in the process.</font><br>
+
+</div>
+<div class="story">
+<article>
+	
+<meta name="year" content="1990">
+
+<p>
+<title>APR90: CRUISING WITH TOPSPEED</title>
+
+</p><p>
+
+</p><p>
+
+</p><p>
+<i><a name="00da_0002"></a><a name="00da_0000">Alex is a knowledge engineer for Technology Applications Inc. in Jacksonville, Florida.  He can be reached on BIX as a.lane or through MCI mail as ALANE.</a></i></p><hr><a name="00da_0000">
+<p>
+
+It is fashionable in some circles to yawn upon hearing that a new C compiler has hit the market.  Such folks see the C world as divided into two main camps -- the Microsofts and the Turbos -- with a smattering of fanatics representing an insignificant fringe.  That fringe, however, has lately succeeded in whipping up the C market, the result being a lively free-for-all as new arrivals such as Watcom, Zortech, and now TopSpeed C attempt to prove their worth to programmers.  Readers, familiar with the TopSpeed name, will associate it with a popular Modula-2 compiler and a recently introduced Pascal compiler, marketed by Jensen &amp; Partners International.  JPI, a company established in 1987 by a group of former Borland employees, is a relatively small company with unquestionably large vision.  They intend to develop an integrated multilanguage environment that will let programmers seamlessly mix and match routines from a broad spectrum of languages, including ISO Pascal, C, C++, Modula-2, and Ada.  What JPI in effect proposes to do is to link each language dynamically into the system as an overlay at run time, thus allowing each language compiler to use the same optimizing code generator.  If TopSpeed C is any indicator, JPI has its sights set on a worthwhile goal.
+</p><p>
+
+</p></a><h3><a name="00da_0000"></a><a name="00da_0004">What You Get</a><a name="00da_0004"></a></h3><a name="00da_0004">
+<p>
+
+I reviewed the TopSpeed C, Version 1.02, Extended Edition, which is basically the standard package (comprised of an optimizing 100 percent ANSI C compiler and high-speed linker, an automatic make facility, an editing environment, and source-level debugger) combined with the TopSpeed C TechKit, which provides enhanced functionality in the form of library source code, Windows support, DOS dynamic linking, profiling, and post-mortem debugging, among other features.  The standard TopSpeed package consists of seven diskettes and nearly three inches of paperback documentation, consisting of a user manual, a language reference, a library reference, and a language tutorial.  The TechKit comes on an additional four disks and has separate documentation.
+</p><p>
+
+</p></a><h3><a name="00da_0004"></a><a name="00da_0005">Finding Files</a><a name="00da_0005"></a></h3><a name="00da_0005">
+<p>
+
+I dread installing software that needs to use DOS environment variables to find files on my disk.  For one thing, I only have so much DOS environment space; for another, I often find that two different packages use the same DOS environment variable name in different ways, and that no amount of fiddling with SET statements shall allow the twain to meet on a consistent basis.  If you have two or more C compilers installed on your hard disk, you probably know what I mean.
+</p></a><p><a name="00da_0005">
+
+If you want TopSpeed C to use DOS environment variables, you can so specify by using the /y flag from the command line, but why bother?  I took an immediate liking to TopSpeed's redirection file feature, which acts as a sort of private environment.  A sample redirection file, TS.RED, is reproduced in </a><a href="http://www.drdobbs.com/cpp/cruising-with-topspeed/9004g.htm#00da_0006">Figure 1</a>.  The syntax is similar to that of DOS paths.  The first line indicates that all KABOOOOM.* files are found in the directory C: \KABOOOOM.  Analogously, all other *.C files may be found either in the current directory (denoted by the '.'), or in C:\TS \EXAMPLES, C:\TS\ SRC, or in D:\ FRAC \PROGS.  The remaining lines are self-explanatory, except perhaps for the line that refers to *.A files that are TopSpeed assembler files.
+</p><p>
+
+</p><h4><a name="00da_0006"></a><a name="00da_0006">Figure 1: A sample redirection file</a></h4><a name="00da_0006">
+<p>
+
+</p><pre>  KABOOOOM.* = C:\KABOOOOM
+  *.C      = .;             C:\TS\EXAMPLES; C:\TS\SRC; D:\FRAC\PROGS;
+  *.PRJ  = .;             C:\TS\PRJ; C:\TS\EXAMPLES;
+  *.H      = .;             C:\TS\INCLUDE;C:\TS\EXAMPLES; D:\FRAC\PROGS;
+  *.A      = .;             C:\TS\LIB; C:\TS\EXAMPLES; C:\TS\SRC
+
+  *.OBJ   =        C:\TS\OBJ; C:\TS\LIB;
+ *.LIB   = .;     C:\TS\LIB; D:\FRAC\PROGS,
+ *.DOC   = .;     C:\TS\DOC;
+  TS.RED = .;     C:\TS\SYS;
+</pre>
+<p>
+
+</p><p>
+
+</p><p>
+By editing TS.REG, then automatically saving and reloading it, you can change the file search (and storage) behavior of the environment on-the-fly.  If, despite your best intentions, you repeatedly end up with all your *.c, *.obj, *.h, and *.exe files in one giant directory, this feature is for you.
+</p><p>
+
+</p></a><h3><a name="00da_0006"></a><a name="00da_0007">Integrated Development Environment</a><a name="00da_0007"></a></h3><a name="00da_0007">
+<p>
+
+The cornerstone of the integrated environment is, of course, the editor.  Out of the box, TopSpeed's editor is configured to use the WordStar command set.  You can change part or all of that by editing a configuration file.
+</p><p>
+
+Actually, the TopSpeed configuration file TSCFG.TXT affords the user quite a bit of control over not just the editor but the TopSpeed environment in general.  The file is a 33K ASCII text file that defines the menu structure, every menu option, the editor commands, and even compilation error messages used by the TopSpeed system.  This is the file you edit if you want to make the environment editor act more like, say, Brief than WordStar.  A disk file explains how to make the changes, and after only a few minutes, I was able to change the main menu format from vertical to horizontal and to define the Ctrl-F10 keychord as a way to directly access the optimization menu.  While there are many things you can change, there are others (such as an inability to extend the undo feature past one event) you have no control over. Once you've finished making changes, you can incorporate them into the TopSpeed environment by running the TSCFG.EXE program.
+</p><p>
+
+Although the editor handles up to ten windows (0 - 9), you'd normally edit in windows #1 through #9, because window #O is a special window, called the "error editor window."  This window comes into play after errors and warnings are found during compilation of a source file.  The flawed file is displayed in this window with the cursor positioned at the first error, and the corresponding error message appears at the bottom of the window.  Pressing F8 moves you forward to the location of the next error; F7, back to the previous one.
+</p><p>
+
+When you exit from the TopSpeed environment, the system remembers the contents and status of each window and reloads the same files the next time you enter the environment.  You can alternatively start with a "clean slate" by supplying the /n option on the command line. Another nice touch is a prompt reminding you to save your work when you call up the source-level visual interactive debugger (VID) from the TopSpeed menu.
+</p><p>
+
+There are a number of useful options available under the Utilities menu, including an ASCII table, a programmer's calculator that works in decimal, hex, or binary, and a window that lets you see the scan codes for keyboard keys.  There is a multiple-file string search capability that works a bit such as grep, albeit without the powerful regular expression capabilities of that Unix utility.  Other options include the ability to print files, to view files as data (that is, in hex), and to display system information.  "System Info" shows the current date, time, and directory, the names of the files being edited in the TopSpeed windows, and a summary of free space on all disks.  Be prepared to wait for this report if you have a CD-ROM disk attached to your system, for even though there is no "free space" available on a CD-ROM, there is no way to tell TopSpeed to ignore the drive, which gets interrogated in turn along with the other drives in your system.
+</p><p>
+
+There are a number of other features I found useful in this environment, too many in fact to list.  Particularly noteworthy to me, however, are the ability to have up to nine generations of backup copies (I have mine set to 3), and the ability to record, load, save, and playback keystroke macros.  The instructions for recording a macro were clear, and it took only a couple of minutes for me to create a macro that toggled all optimization on and off.  About the only criticism I have of the editing environment is the lack of mouse support and the lack of Unix-style regular expression parsing (as in Brief, for example), but those are relatively minor annoyances.
+</p><p>
+
+</p></a><h3><a name="00da_0007"></a><a name="00da_0008">Compiling</a><a name="00da_0008"></a></h3><a name="00da_0008">
+<p>
+
+While the editor and its features form an important part of the TopSpeed C package, you can't forget that this is, after all, a C compiler, and the worth of the package ultimately hinges on how well it compiles code.
+</p></a><p><a name="00da_0008">
+
+To help put TopSpeed C through its paces, I worked with a file that had been written in Microsoft C for a fairly simple-minded game of deduction.  The playing "field" for this game is a 9 x 15 grid that contains some number of hidden mines, and the player uses the numeric keypad to "walk" a happy-face character through this mine field to a goal.  To give the player a fighting chance, the number of mines in adjacent squares is displayed as the player moves from square to square, thus allowing the player to deduce the location of the mines without "stepping" on them.  To make life easier, the location of mines may be marked by pressing M and an appropriate key on the numeric keypad.  In addition, if an /s parameter is passed on the command line when the program is invoked, the program won't let the player step on such marked squares.  Finally, typing?  at the start of the game causes the program to start playing by itself until it either gets to the goal or is unable to proceed further through the grid.  Aside from being fun to play, the file KABOOOOM.C (see </a><a href="http://www.drdobbs.com/cpp/cruising-with-topspeed/9004g.htm#00da_000f">Listing One</a>, page 109) is just under 1000 lines in length and offers a substantial chunk of source code for the compiler to process.
+</p><p>
+
+The first attempt to compile the code resulted in a couple of errors.  The first error, in the function DisplayCell, had to do with a failure to read an embedded ASCII 2 (the happy-face) in the source code.  The TopSpeed editor did not read this character, resulting in the assignment Char = "; and a subsequent error.  Changing the line to Char = 2; fixed the problem.
+</p><p>
+
+The second error came in a line of the DisplayChar function, which read: FP_SEG(cPos) = OxObOOO;
+</p><p>
+
+While a legitimate statement in Microsoft C, this use of FP_SEG( ) generated a "left operand of assignment must be a modifiable lvalue" error message from the TopSpeed compiler.  Pressing F1 for help brought up an explanation of the message, which is comfortably verbose as it is. I moved off the offending line and again pressed F1, and shortly was reading the help screen associated with FP_SEG( ).  It referred me to MK_FP( ), which permitted me to replace the offending line (and the line after it) with: cPos = MK_FP(OxOb800,((x+y*80)&lt;&lt; 1)); which eliminated the problem.  A quick check showed that Turbo C 2.0 also required the MK_FP( ) syntax in order to compile without error.  I later learned that the FP_SEG macro is defined differently for the Microsoft and TopSpeed compilers, which explains the failure to compile.
+</p><p>
+
+Once the bugs were corrected, the initial compilation pass with TopSpeed C took about 13 seconds on my 16-MHz ARC 386i computer, and optimization took another 18 seconds or so.  With all optimizations turned off (there are nine forms of optimization, including optimization for time and space as well as constant, jump, peephole, loop, and alias optimization), the compile time was cut down to 28 seconds overall.  This compared favorably with a run through Microsoft C 5.1, which took 37 seconds to compile without optimization, yet was slower than Turbo C 2.0, which compiled and linked the program in about 13 seconds.
+</p><p>
+
+I ran the compiler from within the editing environment, but you can also run TopSpeed C from the command line, where a comprehensive set of command-line options give the programer complete control of compilation and linking.  In fact, there are four ways to set compiler options in the TopSpeed C compiler: From a menu, from the command line, via directives in TopSpeed's make facility, and by including pragmas in the source code.
+</p><p>
+
+One very topical option in the compiler is the ability to check for ANSI compatibility.  JPI has made a point of maintaining 100 percent conformance to the ANSI C definition, and now that the seemingly interminable deliberations of the ANSI C committee have apparently come to a close, this feature should be a point in TopSpeed C's favor.
+</p><p>
+
+</p><h3><a name="00da_0009">Making it With Project Files</a><a name="00da_0009"></a></h3><a name="00da_0009">
+<p>
+
+TopSpeed's project files make it easy to admit to hating traditional make programs.  Like its traditional counterpart, TopSpeed's Make uses a text file (called a "project file") to figure out what kind of file to produce with what objects and libraries, and using which memory model.  Project files are collections of "directives" that, in addition to the usual specification of object modules, libraries, and so on, establish various compiler and linker options (such as inclusion of debugger information in the .EXE file), override options for specific files or groups of files, and specify what programs to run (if any) after the make process is complete.  You could, for example, copy the .EXE file to a diskette every time you compiled and linked the source code.  In short, the project file is the mechanism by which TopSpeed source code is transformed into executable files.
+</p><p>
+
+Two valuable features aid in the link process.  Type-safe linking involves catching function calls made with the wrong parameter types.  You will bless this feature the first time it saves you from calling an external function with the wrong parameter types.  The technique of smart linking helps keep executable file size down and reduces the complexity associated with maintaining libraries.  When you link a program, TopSpeed will only include those routines that are referenced in the code, leaving all the other routines out of the executable file. Strangely enough, this means that sometimes you must make an extraneous reference to a variable in order to make sure certain routines are linked into the .EXE file.  A case in point is the need to include a line includePMD = 1; in one of the functions that handles critical program errors so that TopSpeed loads the appropriate routines to perform a post-mortem dump in case the program bombs.
+</p><p>
+
+</p></a><h3><a name="00da_0009"></a><a name="00da_000a">Debugging</a><a name="00da_000a"></a></h3><a name="00da_000a">
+<p>
+
+The VID is a full source-level symbolic debugger that uses overlapping windows in an interactive environment.  Like the parent TopSpeed environment, there is no mouse support in VID.
+</p><p>
+
+VID is easy to run from the TopSpeed environment, which wisely prompts you to save your files before it swaps itself to disk, leaving room for your program and VID.  To use VID, you need to generate VID information during compilation and a .MAP file during the link process. All required files are found using the redirection file, if necessary.
+</p><p>
+
+All the usual debugging features are here.  You can set and clear breakpoints, create "sticky" breakpoints, examine different types of variables, find procedures, evaluate expressions, all the usual stuff.  While not as powerful as, say, the Borland Turbo Debugger (there is no equivalent to the Inspect command, for example, which shows record structure, or the CPU window, which shows registers, memory, and disassembled code all at once) the VID is nevertheless a competent piece of software that is able to do the job.
+</p><p>
+
+</p></a><h3><a name="00da_000a"></a><a name="00da_000b">TechKit</a><a name="00da_000b"></a></h3><a name="00da_000b">
+<p>
+
+The TechKit is what distinguishes the Extended Edition ($395 list price) from the Standard Edition ($195) of TopSpeed C.  What you get for your money is a collection of programs, files, and utilities that add functionality to TopSpeed C.  It includes support for Windows programming and dynamic link libraries (DLLs), including DLLs that can be used under DOS.  (A DLL is an OS/2 innovation that allows applications to share common data and code by linking library routines at run time.)
+</p><p>
+
+A major piece of the Techkit is the source code to the TopSpeed libraries.  This collection of files fills over 1.5 Mbytes of disk space.  The code is designed not only for use by TopSpeed C, but also for use with other TopSpeed languages.  Many of the files are written in TopSpeed's assembler language, which makes for speedy routines, but also requires you to learn a new dialect of assembler.
+</p><p>
+
+The TopSpeed Assembler attempts to gain in simplicity and speed by deviating from "standard" 8086 assemblers in several ways.  For example, the lexical structure of the assembler is derived from Modula-2, memory operands and segment overrides must always be explicitly stated, and there are no macros used in the language.  While I can understand JPI's reason for doing it this way, I don't look forward to becoming familiar with yet another assembler scheme.
+</p><p>
+
+An interesting utility included in the TechKit is WATCH, which lets you specify groups or individual DOS functions to monitor during program execution.  I ran the program and specified the date/time functions for monitoring, with output to be sent to my printer (as opposed to the screen or disk file).  When I ran KABOOOOM.EXE, a brief report was sent to the printer when the program called DOS to get the time during the initialization phase.  The Alt-backspace keychord toggles WATCH on and off, and in order to change the scope of the DOS functions monitored, I found it necessary to unload WATCH and then reload it from scratch. (If you send WATCH's output to the screen, however, you are able to interact more with the program [setting and clearing functions to monitor], albeit at the expense of interfering greatly with the screen.)  WATCH, of course, will not work if the program it is monitoring does not use DOS to accomplish its ends.
+</p><p>
+
+Other pieces of the TechKit aid in the debug and streamline process.  The post-mortem debugger was undoubtedly created for those who've wished their bug-ridden programs could leave some indication behind them of what went wrong before they exit to never-never land.  This feature is set by including the PMD.H file and referencing the includePMD variable in the source code.  Should anything go wrong and a critical error function is called, your program creates a file that details the state of the system just before lights out.  This file can be examined using the VID.
+</p><p>
+
+I've always gritted my teeth when sitting down to work with a profiler, but I found the TopSpeed TSPROF profiler easy to use.  All you need to use TSPROF is a .MAP file, which is created when the program is made.  I ran the profiler for KABOOOOM and found that over half the program's time is spent executing DOS routines, nearly half the program's time is spent in the BIOS, and only three percent or so of the time is in the code.
+</p><p>
+
+</p></a><h3><a name="00da_000b"></a><a name="00da_000c">Conclusion</a><a name="00da_000c"></a></h3><a name="00da_000c">
+<p>
+
+Working with the TopSpeed C compiler was a wholly pleasant experience.  The advantage of having the file redirection and project file features are alone almost worth the price of admission, and the overall flexibility of the system is a big plus.  Though it remains to be seen whether JPI will be able to successfully market the idea of a common programming environment with plug-in language modules, TopSpeed C certainly deserves to be a contender in the fight for a share of the C compiler market.
+</p><p>
+
+</p></a><h3><a name="00da_000c"></a><a name="00da_000d">Acknowledgments</a><a name="00da_000d"></a></h3><a name="00da_000d">
+<p>
+
+The author would like to thank Thomas D. Eldredge II for the use of his source code for KABOOOOM.C.  Tom's program represents an enhancement of a game called RELENTLESS LOGIC by Conway, Hong, and Smith, which was found on the RBBS-IN-A-BOX CD-ROM.
+</p><p>
+
+</p></a><h3><a name="00da_000d"></a><a name="00da_000e">PRODUCT INFORMATION</a><a name="00da_000e"></a></h3><a name="00da_000e">
+<p>
+
+TopSpeed C Jensen &amp; Partners International 1101 San Antonio Rd., Ste. 301 Mountain View, CA 94043 Price: Standard Edition $199 Extended Edition $395 OS/2 Edition $495 Requirements: Extended Edition -- IBM PC or compatible, DOS 2.0 or later, 640K RAM.  Hard disk recommended.
+</p><p>
+
+</p><p>
+CRUISING WITH TOPSPEED
+by Alex Lane
+</p></a><p><a name="00da_000e">
+</a><a name="00da_000f"></a><a name="00da_000f">
+</a><a name="00da_0010"><b>[LISTING ONE]</b></a></p><pre><a name="00da_0010">&lt;a name="00da_0010"&gt;
+
+/***************************************************************************
+File:    Kaboooom.c
+Purpose: Allows the user to 'walk' through a minefield; a detector shows
+  how many mines are immediately adjacent to you. As you visit a cell, it
+  leaves a marker telling you how many were next to you, and you have the
+  ability to mark cells with a character (assumably to mark mines).
+ Changes:
+ 11/10/89 (tdeii) If you call the program with "/s" or "/S", it gives
+  you a "safer" game, where it does not let you walk on spaces that you
+  have marked (whether there is a mine there or not!)
+  11/11/89 (tdeii) Allows you to press "?" and get some help starting at your
+  current position; will mark mines that it knows (by deducing their position),
+  and "visit" places that it knows are safe. This propagates until it cannot
+  deduce anything else (see EvaluatePosition).
+***************************************************************************/
+#include "stdio.h"
+#include "stdarg.h"
+#include "stdlib.h"
+#include "dos.h"
+#include "conio.h"
+#include "string.h"
+
+#define SCREEN_X 80
+#define SCREEN_Y 25
+#define GRID_X 15
+#define GRID_Y  9
+#define TRUE 1
+#define FALSE 0
+
+#define bEMPTY    0
+#define bVISITED  1
+#define bBOMB     2
+#define bCURRENT  3
+#define bFINISH   4
+#define bEXPLODED 5
+
+#define MAKECOLOR(fore,back) ((back)*16+(fore))
+
+typedef int BOOL;
+typedef struct tagADJACENCYGROUP {
+  int BombCount;         /* Number of bombs located in this adj. group */
+  int CellCount;         /* Number of cells filled                     */
+  int Cell[8][2];        /* x,y coordinates of up to 8 cells           */
+} ADJACENCYGROUP;
+
+int  Board[GRID_X][GRID_Y];           /* Board; see codes above (bXXX)    */
+int  UserMark[GRID_X][GRID_Y];        /* User marks; 0 = none, 'M' = mine */
+int  nNumMines;                       /* Number of mines on board         */
+int  UserX, UserY;                    /* Current user X and Y position    */
+BOOL bShowBombs;                      /* TRUE if program shows bombs (it  */
+                                      /* does this after you win or lose) */
+BOOL bSafeGame;                       /* TRUE if program does not let you */
+                                      /* walk on mines you have marked    */
+ADJACENCYGROUP AdjacencyGroup[GRID_X][GRID_Y]; /* AG for each board pos   */
+char szClear[79] = "
+                  ";
+void Pause(void)
+{
+  if (getch() == 0) getch();
+}
+
+void GetXY_(int *pX, int *pY)
+{
+  union REGS regs;
+  regs.h.ah = 3;
+  regs.h.bh = 0;                                         /* display page 0 */
+  int86(0x10, &amp;regs, &amp;regs);
+  if (pY != NULL) {
+    (*pY) = regs.h.dh;
+  }
+  if (pX != NULL) {
+    (*pX) = regs.h.dl;
+  }
+}
+void GotoXY_(int x, int y)
+{
+  union REGS regs;
+  regs.h.ah = 2;
+  regs.h.dh = (unsigned char)y;
+  regs.h.dl = (unsigned char)x;
+  regs.h.bh = 0;                                         /* display page 0 */
+  int86(0x10, &amp;regs, &amp;regs);
+}
+int nRandom(int nMax)
+{
+  return ((int)((double)rand() / RAND_MAX * (double)nMax));
+}
+void DisplayChar(int x, int y, char cChar, int nColor)
+{
+  char far *cPos;
+  if ((x&gt;=0 &amp;&amp; x&lt;SCREEN_X) &amp;&amp;
+      (y&gt;=0 &amp;&amp; y&lt;SCREEN_Y)) {
+    cPos = MK_FP( 0x0b800,((x + y*80) &lt;&lt; 1));
+    *cPos = cChar;
+    *(cPos+1) = (char)nColor;
+  }
+}
+int CountMines(int x, int y)
+{
+  int i, j;
+  int nCount;
+  nCount = 0;
+  for (i=-1; i&lt;=1; i++) {
+    for (j=-1; j&lt;=1; j++) {
+      if ((x+i &gt;= 0) &amp;&amp; (x+i &lt; GRID_X) &amp;&amp;
+          (y+j &gt;= 0) &amp;&amp; (y+j &lt; GRID_Y)) {
+        if ((Board[x+i][y+j] == bBOMB) ||
+            (Board[x+i][y+j] == bEXPLODED)) {
+          nCount++;
+        }
+      }
+    }
+  }
+  return (nCount);
+}
+void DisplayCell(int x, int y)
+{
+  int Char;
+  Char = UserMark[x][y];
+  if (Char == 0) {
+    Char = 32;
+  }
+  DisplayChar(x*4+1, y*2+1, Char, MAKECOLOR(14,1));
+  DisplayChar(x*4+3, y*2+1, Char, MAKECOLOR(14,1));
+  switch (Board[x][y]) {
+    case bEMPTY:                                       /** Empty cell   **/
+      Char = ' ';
+      break;
+    case bVISITED:                                     /** Visited cell **/
+      Char = '0' + CountMines(x, y);
+      break;
+    case bBOMB:                                        /** Bomb cell!   **/
+      if (bShowBombs) {
+        Char = 15;
+      } else {
+        Char =' ';
+      }
+      break;
+    case bCURRENT:                                     /** Current pos  **/
+      Char = 2;
+      break;
+    case bFINISH:                                      /** Finish cell  **/
+      Char = 19;
+      break;
+    case bEXPLODED:                                    /** Exploded!    **/
+      Char = 15;
+      break;
+  }
+  if (Char != 0) {
+    DisplayChar(x*4+2, y*2+1, Char, MAKECOLOR(14,1));
+  }
+}
+void Initialize(void)
+{
+  unsigned int     nRand;       /* seed for random number generator        */
+  struct dostime_t sDosTime;    /* time structure; used for above seed     */
+  _dos_gettime(&amp;sDosTime);
+  nRand = (unsigned int)((sDosTime.hsecond * 600) +
+                         (sDosTime.second * 10) +
+                         (sDosTime.minute / 6));
+  srand(nRand);
+}
+void PaintBoard(void)
+{
+  int x, y, i;
+  for (x=0; x&lt;SCREEN_X; x++) {
+    for (y=0; y&lt;SCREEN_Y; y++) {
+      DisplayChar(x, y, ' ', MAKECOLOR(14, 1));
+    }
+  }
+  /** Draw left and right sides **/
+  DisplayChar(0, 0, 218, MAKECOLOR(14,1));  /*upper left corner */
+  DisplayChar(GRID_X*4, 0, 191, MAKECOLOR(14,1)); /*upper right corner */
+  for (y=1; y&lt;=GRID_Y; y++) {
+    DisplayChar(0, y*2, 195, MAKECOLOR(14,1));  /* left edge */
+    DisplayChar(GRID_X*4, y*2, 180, MAKECOLOR(14,1)); /* right edge */
+  }
+  DisplayChar(0, GRID_Y*2, 192, MAKECOLOR(14,1));  /* lower left corner */
+  DisplayChar(GRID_X*4, GRID_Y*2, 217, MAKECOLOR(14,1)); /*lower right */
+  /** Draw inside corners **/
+  for (x=1; x&lt;GRID_X; x++) {
+    DisplayChar(x*4, 0, 194, MAKECOLOR(14,1)); /* top edge */
+    for (y=1; y&lt;GRID_Y; y++) {
+      DisplayChar(x*4, y*2, 197, MAKECOLOR(14,1)); /* intersections */
+    }
+    DisplayChar(x*4, GRID_Y*2, 193, MAKECOLOR(14,1)); /* bottom edge */
+  }
+  /** Draw connecting lines **/
+  for (x=0; x&lt;=GRID_X; x++) {
+    for (y=0; y&lt;=GRID_Y; y++) {
+      if (y != GRID_Y) {
+        DisplayChar(x*4, y*2+1, 179, MAKECOLOR(14,1)); /* verticals  */
+      }
+      if (x != GRID_X) {
+        for (i=1; i&lt;4; i++) {
+          DisplayChar(x*4+i, y*2, 196 , MAKECOLOR(14,1)); /* horizontals */
+        }
+      }
+    }
+  }
+  GotoXY_(0, SCREEN_Y - 1);
+  for (x=0; x&lt;GRID_X; x++) {
+    for (y=0; y&lt;GRID_Y; y++) {
+      DisplayCell(x, y);
+    }
+  }
+}
+void SetUpBoard(void)
+{
+  int i, j;
+  int nMines;
+  BOOL bDone;
+  char cBuffer[80];
+  bShowBombs = FALSE;
+  /** First, get number of bombs **/
+  nNumMines = 0;
+  while ((nNumMines &lt; 10) || (nNumMines &gt; 40)) {
+    GotoXY_(0, 24);
+    printf("How many bombs do you want? (10-40)?? ");
+    fgets(cBuffer, sizeof(cBuffer), stdin);
+    sscanf(cBuffer, "%d", &amp;nNumMines);
+  }
+  /** next, clear out board &amp; user scratchpad **/
+  for (i=0; i&lt;GRID_X; i++) {
+    for (j=0; j&lt;GRID_Y; j++) {
+      Board[i][j] = 0;
+      UserMark[i][j] = 0;
+    }
+  }
+  for (nMines=0; nMines&lt;nNumMines; nMines++) {
+    bDone = FALSE;
+    while (!bDone) {
+      i = nRandom(GRID_X);         /* First you roll it, */
+      j = nRandom(GRID_Y);         /* Then you pat it,   */
+      if ((Board[i][j] == bEMPTY) &amp;&amp;
+          (!((i &lt;= 1) &amp;&amp; (j &lt;= 1))) &amp;&amp;
+          (!((i &gt;= GRID_X - 2) &amp;&amp; (j &gt;= GRID_Y - 2)))
+         ) {
+        bDone = TRUE;
+      }
+    }
+    Board[i][j] = bBOMB;           /* Then you mark it with a 'B' */
+  }
+  /* Set user at position 0, 0 */
+  UserX = 0;
+  UserY = 0;
+  Board[0][0] = bCURRENT;
+  /* Set finish (hq) at position GRID_X, GRID_Y */
+  Board[GRID_X - 1][GRID_Y - 1] = bFINISH;
+  /* Display board on screen */
+  PaintBoard();
+}
+BOOL Travel(int dx, int dy)
+{
+  int NewX, NewY;            /* New X and Y coordinates of user       */
+  BOOL bInvalid;             /* TRUE if trying to walk off board      */
+  BOOL bAbort;               /* TRUE if user won or lost (abort game) */
+  BOOL bBombWalk;            /* TRUE if user tried to walk on a bomb  */
+
+  bAbort = FALSE;
+  NewX = UserX + dx;
+  NewY = UserY + dy;
+  bInvalid = FALSE;
+  bBombWalk = FALSE;
+  if ((NewX &lt; 0) || (NewX &gt;= GRID_X)) {
+    bInvalid = TRUE;
+  }
+  if ((NewY &lt; 0) || (NewY &gt;= GRID_Y)) {
+    bInvalid = TRUE;
+  }
+  if ((!bInvalid) &amp;&amp; (bSafeGame) &amp;&amp; (UserMark[NewX][NewY] == 'M')) {
+    bInvalid = TRUE;
+    bBombWalk = TRUE;
+  }
+  if (bInvalid) {
+    GotoXY_(0, SCREEN_Y - 1);
+    printf("** INVALID MOVE ** ... press any key...");
+    if (bBombWalk) {
+      printf("(You must un-mark it.)");
+    }
+    Pause();
+    GotoXY_(0, SCREEN_Y - 1);
+    printf(szClear);
+  } else {
+    if (Board[NewX][NewY] == bBOMB) {
+      bAbort = TRUE;
+      Board[UserX][UserY] = bVISITED;
+      DisplayCell(UserX, UserY);
+      Board[NewX][NewY] = bEXPLODED;
+      DisplayCell(NewX, NewY);
+      GotoXY_(0, 22);
+      printf("******** YOU HAVE STEPPED ON A BOMB!! ********");
+      Pause();
+      GotoXY_(0, 22);
+      printf(szClear);
+      GotoXY_(0, 22);
+    } else {
+      if ((NewX == GRID_X-1) &amp;&amp; (NewY == GRID_Y-1)) {
+        bAbort = TRUE;
+        Board[UserX][UserY] = bVISITED;
+        DisplayCell(UserX, UserY);
+        Board[NewX][NewY] = bCURRENT;
+        DisplayCell(NewX, NewY);
+        GotoXY_(0, 22);
+        printf("************* YOU HAVE WON!! *************");
+        Pause();
+        GotoXY_(0, 22);
+        printf(szClear);
+        GotoXY_(0, 22);
+      } else {
+        Board[UserX][UserY] = bVISITED;
+        DisplayCell(UserX, UserY);
+        UserX = NewX;
+        UserY = NewY;
+        Board[UserX][UserY] = bCURRENT;
+        DisplayCell(UserX, UserY);
+      }
+    }
+  }
+  GotoXY_(0, GRID_Y*2+2);
+  printf("Number of mines around you: %d", CountMines(UserX, UserY));
+  GotoXY_(0, SCREEN_Y - 1);
+  return (bAbort);
+}
+void PlaceUserMark(void)
+{
+  BOOL bDone, bAbort;
+  int  Ch;
+  int  NewX, NewY;
+  int  dx, dy;
+
+  bAbort = FALSE;
+  GotoXY_(0, 24);
+  printf("Mark in which direction? (ESC=abort)");
+  bDone = FALSE;
+  while (!bDone) {
+    bDone = TRUE;
+    Ch = getch();
+    switch (Ch) {
+      case 0:
+        Ch = getch();
+        switch (Ch) {
+          case 71:  /* home */
+            dx = -1;
+            dy = -1;
+            break;
+          case 72:  /* up arrow */
+            dx = 0;
+            dy = -1;
+            break;
+          case 73:  /* page up */
+            dx = 1;
+            dy = -1;
+            break;
+          case 75:  /* left arrow */
+            dx = -1;
+            dy = 0;
+            break;
+          case 77:  /* right arrow */
+            dx = 1;
+            dy = 0;
+            break;
+          case 79:  /* end */
+            dx = -1;
+            dy = 1;
+            break;
+          case 80:  /* down arrow */
+            dx = 0;
+            dy = 1;
+            break;
+          case 81:  /* page down */
+            dx = 1;
+            dy = 1;
+            break;
+          default:
+            bDone = FALSE;
+            break;
+        }
+        break;
+        case '7':  /* home */
+          dx = -1;
+          dy = -1;
+          break;
+        case '8':  /* up arrow */
+          dx = 0;
+          dy = -1;
+          break;
+        case '9':  /* page up */
+          dx = 1;
+          dy = -1;
+          break;
+        case '4':  /* left arrow */
+          dx = -1;
+          dy = 0;
+          break;
+        case '6':  /* right arrow */
+          dx = 1;
+          dy = 0;
+          break;
+        case '1':  /* end */
+          dx = -1;
+          dy = 1;
+          break;
+        case '2':  /* down arrow */
+          dx = 0;
+          dy = 1;
+          break;
+        case '3':  /* page down */
+          dx = 1;
+          dy = 1;
+          break;
+        case 27:
+        case 13:
+        case 10:
+        case  8:
+          bAbort = TRUE;
+          break;
+        default:
+          bDone = FALSE;
+          break;
+    }
+  }
+  GotoXY_(0, 24);
+  printf(szClear);
+  if (!bAbort) {
+    NewX = UserX + dx;
+    NewY = UserY + dy;
+    if ((NewX &lt; 0) || (NewX &gt;= GRID_X) || (NewY &lt; 0) || (NewY &gt;= GRID_Y)) {
+      GotoXY_(0, 24);
+      printf("ERROR: Out of bounds!!");
+      Pause();
+      GotoXY_(0, 24);
+      printf(szClear);
+    } else {
+      GotoXY_(0, 24);
+      if (UserMark[NewX][NewY] != 0) {
+        Ch = 0;
+      } else {
+        Ch = 'M';
+      }
+      UserMark[NewX][NewY] = Ch;
+      DisplayCell(NewX, NewY);
+    }
+  }
+  GotoXY_(0, 24);
+}
+void ComputeAdjacency(int x, int y)
+{
+  int dX, dY;
+  int BombCount;
+  int Cell;
+  if ((x &gt;= 0) &amp;&amp; (x &lt; GRID_X) &amp;&amp; (y &gt;= 0) &amp;&amp; (y &lt; GRID_Y)) {
+    if ((Board[x][y] == bVISITED) || (Board[x][y] == bCURRENT)) {
+      BombCount = CountMines(x, y);
+      Cell = 0;
+      for (dX=-1; dX&lt;=1; dX++) {
+        for (dY=-1; dY&lt;=1; dY++) {
+          if (!((dX == 0) &amp;&amp; (dY == 0))) {
+            if ((x+dX &gt;= 0) &amp;&amp; (x+dX &lt; GRID_X) &amp;&amp;
+                (y+dY &gt;= 0) &amp;&amp; (y+dY &lt; GRID_Y)) {
+              if ((Board[x+dX][y+dY] != bVISITED) &amp;&amp;
+                  (Board[x+dX][y+dY] != bCURRENT)) {
+                if (UserMark[x+dX][y+dY] != 0) {
+                  BombCount--;
+                } else {
+                  AdjacencyGroup[x][y].Cell[Cell][0] = x+dX;
+                  AdjacencyGroup[x][y].Cell[Cell][1] = y+dY;
+                  Cell++;
+                }
+              }
+            }
+          }
+        }
+      }
+      AdjacencyGroup[x][y].BombCount = BombCount;
+      AdjacencyGroup[x][y].CellCount = Cell;
+    } else {
+      AdjacencyGroup[x][y].CellCount = 0;
+      AdjacencyGroup[x][y].BombCount = -1;   /** Don't look flag */
+    }
+  }
+}
+int AddToPositionList(int PositionList[GRID_X * GRID_Y][2],
+                      int PositionListHead, int x, int y)
+{
+  int  nIndex;
+  BOOL bFound;
+  ComputeAdjacency(x, y);
+  bFound = FALSE;
+  for (nIndex=0; (nIndex&lt;PositionListHead) &amp;&amp; (!bFound); nIndex++) {
+    if ((PositionList[nIndex][0] == x) &amp;&amp; (PositionList[nIndex][1] == y)) {
+      bFound = TRUE;
+    }
+  }
+  if (!bFound) {
+    PositionList[PositionListHead][0] = x;
+    PositionList[PositionListHead][1] = y;
+    PositionListHead++;
+  }
+  if (PositionListHead &gt; GRID_X * GRID_Y) {
+    GotoXY_(0, 22);
+    printf("ERROR! PositionListHead &gt; max (%d)", PositionListHead);
+    Pause();
+    GotoXY_(0, 22);
+    printf(szClear);
+    GotoXY_(0, 22);
+  }
+  return (PositionListHead);
+}
+int AddSurroundingToPositionList(int PositionList[GRID_X * GRID_Y][2],
+                                 int PositionListHead, int x, int y)
+
+{
+  int dX, dY;
+
+  for (dX=-1; dX&lt;=1; dX++) {
+    for (dY=-1; dY&lt;=1; dY++) {
+      if ((x+dX &gt;= 0) &amp;&amp; (x+dX &lt; GRID_X) &amp;&amp; (y+dY &gt;= 0) &amp;&amp; (y+dY &lt; GRID_Y)) {
+        if ((Board[x+dX][y+dY] == bVISITED) ||
+            (Board[x+dX][y+dY] == bCURRENT)) {
+          PositionListHead = AddToPositionList(PositionList, PositionListHead,
+x+dX, y+dY);
+        }
+      }
+    }
+  }
+  return (PositionListHead);
+}
+BOOL FindPositionInAG(ADJACENCYGROUP *pAG, int x, int y)
+{
+  int  nIndex;
+  BOOL bFound;
+  bFound = FALSE;
+  for (nIndex=0; nIndex&lt;pAG-&gt;CellCount; nIndex++) {
+    if ((pAG-&gt;Cell[nIndex][0] == x) &amp;&amp; (pAG-&gt;Cell[nIndex][1] == y)) {
+      bFound = TRUE;
+    }
+  }
+  return (bFound);
+}
+void MarkBombCell(int x, int y)
+{
+  UserMark[x][y] = 'M';
+  DisplayCell(x, y);
+  if (Board[x][y] != bBOMB) {
+    GotoXY_(0, 22);
+    printf("LOGIC ERROR: I tagged a phantom bomb @ (%d,%d).", x, y);
+    Pause();
+    GotoXY_(0, 22);
+    printf(szClear);
+    GotoXY_(0, 24);
+  }
+}
+void VisitCell(int x, int y)
+{
+  if (Board[x][y] != bCURRENT) {
+    if (Board[x][y] == bBOMB) {
+      GotoXY_(0, 22);
+      printf("LOGIC ERROR: I walked on a bomb @ (%d,%d).", x, y);
+      Pause();
+      GotoXY_(0, 22);
+      printf(szClear);
+      GotoXY_(0, 24);
+    }
+    Board[x][y] = bVISITED;
+    DisplayCell(x, y);
+  }
+}
+int CountCommonCells(ADJACENCYGROUP *pGroup1, ADJACENCYGROUP *pGroup2)
+{
+  int Cell, nCount;
+  nCount = 0;
+  for (Cell=0; Cell&lt;pGroup1-&gt;CellCount; Cell++) {
+    if (FindPositionInAG(pGroup2,
+                         pGroup1-&gt;Cell[Cell][0], pGroup1-&gt;Cell[Cell][1])) {
+      nCount++;
+    }
+  }
+  return (nCount);
+}
+BOOL ProcessRule3(ADJACENCYGROUP *pCurrentAG, ADJACENCYGROUP *pTempAG,
+                  int PositionList[GRID_X * GRID_Y][2],
+                  int *pPositionListHead)
+{
+  int x;
+  int BombCount, CellCount;
+  int PositionListHead;
+  int CellHolder[9][2];
+  int CellHolderHead;
+  BOOL bRetVal;
+  PositionListHead = *pPositionListHead;
+  bRetVal = FALSE;
+  BombCount = pCurrentAG-&gt;BombCount;
+  CellCount = pCurrentAG-&gt;CellCount;
+  if (pTempAG-&gt;CellCount == CountCommonCells(pTempAG, pCurrentAG)) {
+    BombCount -= pTempAG-&gt;BombCount;
+    CellCount -= pTempAG-&gt;CellCount;
+    if ((CellCount &gt; 0) &amp;&amp; ((BombCount == CellCount) || (BombCount == 0))) {
+      bRetVal = TRUE;
+      CellHolderHead = 0;
+      CellCount = pCurrentAG-&gt;CellCount;
+      for (x=0; x&lt;CellCount; x++) {
+        if (!FindPositionInAG(pTempAG, pCurrentAG-&gt;Cell[x][0],
+                              pCurrentAG-&gt;Cell[x][1])) {
+          if (BombCount == 0) {
+            VisitCell(pCurrentAG-&gt;Cell[x][0], pCurrentAG-&gt;Cell[x][1]);
+          } else {
+            MarkBombCell(pCurrentAG-&gt;Cell[x][0], pCurrentAG-&gt;Cell[x][1]);
+          }
+          /* Queue up cells to put in position list for later */
+          CellHolder[CellHolderHead][0] = pCurrentAG-&gt;Cell[x][0];
+          CellHolder[CellHolderHead][1] = pCurrentAG-&gt;Cell[x][1];
+          CellHolderHead++;
+        }
+      }
+      for (x=0; x&lt;CellHolderHead; x++) {
+        PositionListHead = AddSurroundingToPositionList(
+                             PositionList,
+                             PositionListHead,
+                             CellHolder[x][0],
+                             CellHolder[x][1]);
+      }
+    }
+  }
+  *pPositionListHead = PositionListHead;
+  return (bRetVal);
+}
+void EvaluatePosition(void)
+{
+  int  CurrentX, CurrentY;
+  int  x, y;
+  int  Cell;
+  int  dX, dY;
+  int  BombCount, CellCount;
+  int  PositionList[GRID_X * GRID_Y][2], PositionListHead;
+  ADJACENCYGROUP *pTempAG;
+  BOOL bDone;
+  BOOL bModifiedAny;
+  bModifiedAny = TRUE;
+  for (x=0; x&lt;GRID_X; x++) {
+    for (y=0; y&lt;GRID_Y; y++) {
+      ComputeAdjacency(x, y);
+    }
+  }
+  PositionList[0][0] = UserX;
+  PositionList[0][1] = UserY;
+  PositionListHead = 1;
+  while (bModifiedAny) {
+    bModifiedAny = FALSE;
+    while (PositionListHead &gt; 0) {
+      CurrentX = PositionList[0][0];
+      CurrentY = PositionList[0][1];
+      for (x=0; x&lt;PositionListHead-1; x++) {
+        PositionList[x][0] = PositionList[x+1][0];
+        PositionList[x][1] = PositionList[x+1][1];
+      }
+      PositionListHead--;
+      ComputeAdjacency(CurrentX, CurrentY);
+      BombCount = AdjacencyGroup[CurrentX][CurrentY].BombCount;
+      CellCount = AdjacencyGroup[CurrentX][CurrentY].CellCount;
+      if ((CellCount &gt; 0) &amp;&amp; (BombCount &gt; -1)) {
+/*
+           Rule 1: if number of bombs = number of cells, all are bombs!
+*/
+        if (CellCount == BombCount) {
+          for (Cell=0; Cell&lt;CellCount; Cell++) {
+            x = AdjacencyGroup[CurrentX][CurrentY].Cell[Cell][0];
+            y = AdjacencyGroup[CurrentX][CurrentY].Cell[Cell][1];
+            MarkBombCell(x, y);
+            PositionListHead = AddSurroundingToPositionList(PositionList,
+                                                            PositionListHead,
+                                                            x, y);
+            bModifiedAny = TRUE;
+          }
+        } else {
+
+/*
+             Rule 2: if number of bombs = 0, all cells are ok!
+*/
+          if ((BombCount == 0) &amp;&amp; (CellCount &gt; 0)) {
+            for (Cell=0; Cell&lt;CellCount; Cell++) {
+              x = AdjacencyGroup[CurrentX][CurrentY].Cell[Cell][0];
+              y = AdjacencyGroup[CurrentX][CurrentY].Cell[Cell][1];
+              VisitCell(x, y);
+              PositionListHead = AddToPositionList(PositionList,
+                                                   PositionListHead,
+                                                   x, y);
+              PositionListHead = AddSurroundingToPositionList(PositionList,
+                                                              PositionListHead,
+                                                              x, y);
+              bModifiedAny = TRUE;
+            }
+          } else {
+/*
+               Rule 3: if AG completely overlaps another AG, subtract 2nd
+                       # of bombs from 1st; check rules 1 &amp; 2. If rule 1 or
+                       2 is true in this case, stop looking in rule 3.
+*/
+            bDone = FALSE;
+            for (Cell=0; (Cell&lt;CellCount) &amp;&amp; (!bDone); Cell++) {
+              x = AdjacencyGroup[CurrentX][CurrentY].Cell[Cell][0];
+              y = AdjacencyGroup[CurrentX][CurrentY].Cell[Cell][1];
+              for (dX=-1; (dX&lt;=1) &amp;&amp; (!bDone); dX++) {
+                for (dY=-1; (dY&lt;=1) &amp;&amp; (!bDone); dY++) {
+                  if ((x+dX &gt;= 0) &amp;&amp; (x+dX &lt; GRID_X) &amp;&amp;
+                      (y+dY &gt;= 0) &amp;&amp; (y+dY &lt; GRID_Y)) {
+                    pTempAG = &amp;AdjacencyGroup[x+dX][y+dY];
+                    if (pTempAG-&gt;BombCount &gt; 0) {       /* if == 0, no help! */
+                      bDone = ProcessRule3(&amp;AdjacencyGroup[CurrentX][CurrentY],
+                                           pTempAG,
+                                           PositionList,
+                                           &amp;PositionListHead);
+                      if (bDone) {
+                        bModifiedAny = TRUE;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    if (bModifiedAny) {
+      for (x=0; x&lt;GRID_X; x++) {
+        for (y=0; y&lt;GRID_Y; y++) {
+          if ((Board[x][y] == bVISITED) || (Board[x][y] == bCURRENT)) {
+            PositionListHead = AddToPositionList(PositionList,
+                                                 PositionListHead,
+                                                 x, y);
+          }
+        }
+      }
+    }
+  }
+}
+BOOL LetUserMove(void)
+{
+  BOOL bDone;
+  BOOL bQuit;
+  int  Ch;
+  bDone = FALSE;
+  while (!bDone) {
+    Ch = getch();
+    switch (Ch) {
+      case 0:
+        Ch = getch();
+        switch (Ch) {
+          case 71:  /* home */
+            bDone = Travel(-1, -1);
+            break;
+          case 72:  /* up arrow */
+            bDone = Travel(0, -1);
+            break;
+          case 73:  /* page up */
+            bDone = Travel(1, -1);
+            break;
+          case 75:  /* left arrow */
+            bDone = Travel(-1, 0);
+            break;
+          case 77:  /* right arrow */
+            bDone = Travel(1, 0);
+            break;
+          case 79:  /* end */
+            bDone = Travel(-1, 1);
+            break;
+          case 80:  /* down arrow */
+            bDone = Travel(0, 1);
+            break;
+          case 81:  /* page down */
+            bDone = Travel(1, 1);
+            break;
+        }
+        break;
+      case '7':  /* home */
+        bDone = Travel(-1, -1);
+        break;
+      case '8':  /* up arrow */
+        bDone = Travel(0, -1);
+        break;
+      case '9':  /* page up */
+        bDone = Travel(1, -1);
+        break;
+      case '4':  /* left arrow */
+        bDone = Travel(-1, 0);
+        break;
+      case '6':  /* right arrow */
+        bDone = Travel(1, 0);
+        break;
+      case '1':  /* end */
+        bDone = Travel(-1, 1);
+        break;
+      case '2':  /* down arrow */
+        bDone = Travel(0, 1);
+        break;
+      case '3':  /* page down */
+        bDone = Travel(1, 1);
+        break;
+      case 'Q':
+      case 'q':
+      case 27:
+        bDone = TRUE;
+        break;
+      case 'M':
+      case 'm':
+        PlaceUserMark();
+        break;
+      case '?':
+        EvaluatePosition();
+        break;
+    }
+  }
+  bShowBombs = TRUE;
+  PaintBoard();
+  GotoXY_(0, SCREEN_Y - 1);
+  printf("Again (Y/n)? ");
+  bDone = FALSE;
+  while (!bDone) {
+    Ch = getch();
+    if ((Ch == 'Y') || (Ch == 'y') || (Ch == 13) || (Ch == 10)) {
+      bDone = TRUE;
+      bQuit = FALSE;
+      printf("Y\n");
+    }
+    if ((Ch == 'N') || (Ch == 'n')) {
+      bDone = TRUE;
+      bQuit = TRUE;
+      printf("N\n");
+    }
+    if (Ch == NULL) {
+      getch();
+    }
+  }
+  return (bQuit);
+}
+int main(int argc, char *argv[])
+{
+  BOOL bDone;
+  Initialize();
+  if ((argc &gt; 1) &amp;&amp;
+      (argv[1][0] == '/') &amp;&amp;
+      ((argv[1][1] == 's') || (argv[1][1] == 'S'))) {
+    bSafeGame = TRUE;
+    printf("SAFE GAME in effect.\n");
+  } else {
+    bSafeGame = FALSE;
+  }
+  bDone = FALSE;
+  while (!bDone) {
+    SetUpBoard();
+    bDone = LetUserMove();
+  }
+  return (0);
+}
+
+
+
+
+
+
+
+
+
+</a></pre><a name="00da_0010">	<!-- send Article author Details-->
+		</a></article><a name="00da_0010">
+</a></div><a name="00da_0010">
+
+<!-- test -->
+<br>
+		<div class="nav1">
+<center>
+	</center>
+</div>
+
+<style type="text/css">
+<!--
+.nav1 {
+	clear: both;
+	text-align: center;
+}
+
+.topcommenttools .tools {
+	display: table;
+	font-size: .7em;
+	font-weight: bold;
+	padding-bottom: 10px;
+	width: 100%;
+}
+
+.topcommenttools .tools .reply {
+	float: left;
+}
+
+.topcommenttools .tools .share-email-report {
+	float: right;
+}
+
+.topcommenttools .tools .share-email-report span {
+	margin-left: 10px;
+}
+
+.topcommenttools .tools .reply a {
+	background: transparent
+		url('http://i.cmpnet.com/ddj/v2/images/reply.gif') no-repeat 0px 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.topcommenttools .tools .share {
+	background: transparent
+		url('http://i.cmpnet.com/ddj/v2/images/share_icon.gif') no-repeat
+		bottom left;
+	padding-left: 23px;
+}
+
+.topcommenttools .tools .email {
+	background: transparent
+		url('http://i.cmpnet.com/ddj/v2/images/mail_icon.gif') no-repeat
+		bottom left;
+	padding-left: 22px;
+}
+
+.topcommenttools .tools .report {
+	background: transparent
+		url('http://i.cmpnet.com/ddj/v2/images/report_icon.gif') no-repeat
+		bottom left;
+	padding-left: 16px;
+}
+-->
+</style>
+
+</a></div><a name="00da_0010">
+<!--  Related Reading Box -->
+		
+		<!-- Mobile IMU Script Here -->
+		<script type="text/javascript">
+			if (document.documentElement.clientWidth <= 767){
+				document.write('<div id="div-gpt-ad-942957474691236830-4" class="responsive_imu"><center>');
+				googletag.display('div-gpt-ad-942957474691236830-4');
+				document.write('</center></div>');
+			}
+		</script>
+		<!-- End: Mobile IMU Script Here -->
+	<style>
+	@media only screen and (min-width: 63.75em) {
+		.responsive_imu{
+			display: none;
+		}
+	}
+</style>             
+     
+      
+    <h3 class="resources">Related Reading</h3>
+    </a><div class="related-resources first tabs" style="margin-bottom:10px;"><a name="00da_0010">
+        </a><ul class="toc clearfix"><a name="00da_0010">
+            </a><li class="first"><a name="00da_0010"></a><a href="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335#toc-news" title="News">News</a></li>
+            <li><a href="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335#toc-commentary" title="Commentary">Commentary</a></li>
+        </ul>
+        <div class="tab-content clearfix">
+            <h3 class="tab"><a name="toc-news">News</a></h3>
+			<!--not from cache.cache key-->    <ul class="events">
+<li><a class="contentgating_article" href="http://www.drdobbs.com/jvm/java-plumbr-unlocks-threads/240169442?cid=SBX_ddj_related_news_default_cpp&amp;itc=SBX_ddj_related_news_default_cpp" title="Java Plumbr Unlocks Threads">Java Plumbr Unlocks Threads</a></li><li><a class="contentgating_article" href="http://www.drdobbs.com/windows/xamarin-editions-of-ipworks-integrator/240169417?cid=SBX_ddj_related_news_default_cpp&amp;itc=SBX_ddj_related_news_default_cpp" title="Xamarin Editions of IP*Works! &amp; Integrator">Xamarin Editions of IP*Works! &amp; Integrator</a></li><li><a class="contentgating_article" href="http://www.drdobbs.com/cloud/jelastic-docker-integration-for-orchestr/240169407?cid=SBX_ddj_related_news_default_cpp&amp;itc=SBX_ddj_related_news_default_cpp" title="Jelastic Docker Integration For Orchestrated Delivery">Jelastic Docker Integration For Orchestrated Delivery</a></li><li><a class="contentgating_article" href="http://www.drdobbs.com/open-source/docker-clocks-in-on-azure/240169384?cid=SBX_ddj_related_news_default_cpp&amp;itc=SBX_ddj_related_news_default_cpp" title="Docker Clocks In On Azure">Docker Clocks In On Azure</a></li><a class="continue" href="http://www.drdobbs.com/news?cid=SBX_ddj_related_news_default_cpp&amp;itc=SBX_ddj_related_news_default_cpp" title="More News">More News<span>»</span></a>                        
+    </ul>                    
+        </div>
+        <div class="tab-content clearfix">
+            <h3 class="tab"><a name="toc-commentary">Commentary</a></h3>
+			<!--not from cache.cache key-->    <ul class="events">
+<li><a class="contentgating_article" href="http://www.drdobbs.com/cloud/tools-to-build-payment-enabled-mobile-ap/240169446?cid=SBX_ddj_related_commentary_default_cpp&amp;itc=SBX_ddj_related_commentary_default_cpp" title="Tools To Build Payment-Enabled Mobile Apps">Tools To Build Payment-Enabled Mobile Apps</a></li><li><a class="contentgating_article" href="http://www.drdobbs.com/windows/xamarin-editions-of-ipworks-integrator/240169417?cid=SBX_ddj_related_commentary_default_cpp&amp;itc=SBX_ddj_related_commentary_default_cpp" title="Xamarin Editions of IP*Works! &amp; Integrator">Xamarin Editions of IP*Works! &amp; Integrator</a></li><li><a class="contentgating_article" href="http://www.drdobbs.com/cloud/jelastic-docker-integration-for-orchestr/240169407?cid=SBX_ddj_related_commentary_default_cpp&amp;itc=SBX_ddj_related_commentary_default_cpp" title="Jelastic Docker Integration For Orchestrated Delivery">Jelastic Docker Integration For Orchestrated Delivery</a></li><li><a class="contentgating_article" href="http://www.drdobbs.com/embedded-systems/hosting-usb/240169402?cid=SBX_ddj_related_commentary_default_cpp&amp;itc=SBX_ddj_related_commentary_default_cpp" title="Hosting USB">Hosting USB</a></li><a class="continue" href="http://www.drdobbs.com/articles?cid=SBX_ddj_related_commentary_default_cpp&amp;itc=SBX_ddj_related_commentary_default_cpp" title="More Commentary">More Commentary<span>»</span></a>                        
+    </ul>        </div>
+    </div>     
+      
+    <div class="related-resources tabs" style="margin-bottom:10px;">
+        <ul class="toc clearfix">
+            <li class="first"><a href="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335#toc-slideshow" title="Slideshow">Slideshow</a></li>
+            <li><a href="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335#toc-video" title="Video">Video</a></li>
+        </ul>
+        <div class="tab-content clearfix">
+            <h3 class="tab"><a name="toc-slideshow">Slideshow</a></h3>
+			<!--not from cache.cache key-->    <ul class="events">
+<li><a class="contentgating_article" href="http://www.drdobbs.com/joltawards/jolt-awards-2015-coding-tools/240169420?cid=SBX_ddj_related_slideshow_default_cpp&amp;itc=SBX_ddj_related_slideshow_default_cpp" title="Jolt Awards 2015: Coding Tools">Jolt Awards 2015: Coding Tools</a></li><li><a class="contentgating_article" href="http://www.drdobbs.com/tools/jolt-awards-2014-the-best-utilities/240168811?cid=SBX_ddj_related_slideshow_default_cpp&amp;itc=SBX_ddj_related_slideshow_default_cpp" title="Jolt Awards 2014: The Best Utilities">Jolt Awards 2014: The Best Utilities</a></li><li><a class="contentgating_article" href="http://www.drdobbs.com/architecture-and-design/2014-developer-salary-survey/240168195?cid=SBX_ddj_related_slideshow_default_cpp&amp;itc=SBX_ddj_related_slideshow_default_cpp" title="2014 Developer Salary Survey">2014 Developer Salary Survey</a></li><li><a class="contentgating_article" href="http://www.drdobbs.com/architecture-and-design/developer-reading-list/240160157?cid=SBX_ddj_related_slideshow_default_cpp&amp;itc=SBX_ddj_related_slideshow_default_cpp" title="Developer Reading List">Developer Reading List</a></li><a class="continue" href="http://www.drdobbs.com/slideshows?cid=SBX_ddj_related_slideshow_default_cpp&amp;itc=SBX_ddj_related_slideshow_default_cpp" title="More Slideshows">More Slideshows<span>»</span></a>                        
+    </ul>        </div>        
+        <div class="tab-content clearfix">
+            <h3 class="tab"><a name="toc-video">Video</a></h3>
+			<!--not from cache.cache key-->    <ul class="events">
+<li><a class="contentgating_article" href="http://www.drdobbs.com/cloud/watson-discovery-advisor-cloud-service/240169017?cid=SBX_ddj_related_video_default_cpp&amp;itc=SBX_ddj_related_video_default_cpp" title="Watson Discovery Advisor Cloud Service">Watson Discovery Advisor Cloud Service</a></li><li><a class="contentgating_article" href="http://www.drdobbs.com/cloud/ibm-watson-developers-cloud/240164016?cid=SBX_ddj_related_video_default_cpp&amp;itc=SBX_ddj_related_video_default_cpp" title="IBM Watson Developers Cloud">IBM Watson Developers Cloud</a></li><li><a class="contentgating_article" href="http://www.drdobbs.com/architecture-and-design/first-robotics-competition-gears-up/240160815?cid=SBX_ddj_related_video_default_cpp&amp;itc=SBX_ddj_related_video_default_cpp" title="FIRST Robotics Competition Gears Up">FIRST Robotics Competition Gears Up</a></li><li><a class="contentgating_article" href="http://www.drdobbs.com/architecture-and-design/connected-vehicles/240148293?cid=SBX_ddj_related_video_default_cpp&amp;itc=SBX_ddj_related_video_default_cpp" title="Connected Vehicles">Connected Vehicles</a></li><a class="continue" href="http://www.drdobbs.com/video/archives?cid=SBX_ddj_related_video_default_cpp&amp;itc=SBX_ddj_related_video_default_cpp" title="More Videos">More Videos<span>»</span></a>                        
+    </ul>        </div>
+    </div> 
+    
+    <div class="related-resources tabs" style="margin-bottom:10px;">
+        <ul class="toc clearfix">
+            <li class="first"><a href="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335#toc-most-popular" title="Most Popular">Most Popular</a></li>
+        </ul>
+        <div class="tab-content clearfix">
+            <h3 class="tab"><a name="toc-most-popular">Most Popular</a></h3>
+			<!--not from cache.cache key-->    <ul class="events">
+<li><a class="contentgating_article" href="http://www.drdobbs.com/cpp/the-c14-standard-what-you-need-to-know/240169034?cid=SBX_ddj_related_mostpopular_default_cpp&amp;itc=SBX_ddj_related_mostpopular_default_cpp" title="The C++14 Standard: What You Need to Know">The C++14 Standard: What You Need to Know</a></li><li><a class="contentgating_article" href="http://www.drdobbs.com/cpp/lambdas-in-c11/240168241?cid=SBX_ddj_related_mostpopular_default_cpp&amp;itc=SBX_ddj_related_mostpopular_default_cpp" title="Lambdas in C++11">Lambdas in C++11</a></li><li><a class="contentgating_article" href="http://www.drdobbs.com/web-development/building-scalable-web-architecture-and-d/240142422?cid=SBX_ddj_related_mostpopular_default_cpp&amp;itc=SBX_ddj_related_mostpopular_default_cpp" title="Building Scalable Web Architecture and Distributed Systems">Building Scalable Web Architecture and Distributed Systems</a></li><li><a class="contentgating_article" href="http://www.drdobbs.com/cpp/a-lightweight-logger-for-c/240147505?cid=SBX_ddj_related_mostpopular_default_cpp&amp;itc=SBX_ddj_related_mostpopular_default_cpp" title="A Lightweight Logger for C++">A Lightweight Logger for C++</a></li><a class="continue" href="http://www.drdobbs.com/?cid=SBX_ddj_related_mostpopular_default_cpp&amp;itc=SBX_ddj_related_mostpopular_default_cpp" title="More Popular">More Popular<span>»</span></a>                        
+    </ul>        </div>        
+    </div>  
+    <hr style="margin-bottom:10px;">
+    
+        <h3 class="resources">More Insights</h3>
+    
+    <div class="related-resources first" style="margin-bottom:10px;">
+    <!-- Taxonomy ID: --><!--not from cache.cache key--><h3>White Papers</h3>		 
+     <!-- Taxonomy ID: -->  
+<ul class="archive">
+				
+				<li><!--Rule 10 -->		
+					<a href="http://www.informationweek.com/whitepaper/security-monitoring/risk-management-security/stop-malware,-stop-breaches/360613?cid=SBX_ddj_well_wp_default_cpp&amp;itc=SBX_ddj_well_wp_default_cpp" name="SBX_ddj_well_wp_default_cpp">
+				Stop Malware, Stop Breaches? How to Add Values Through Malware Analysis				</a>
+								</li>
+				
+				<li><!--Rule 10 -->		
+					<a href="http://www.informationweek.com/whitepaper/security-monitoring/security-management-&amp;-analytics/mid-market-mayem:-cybercriminals-wreak-havoc-beyond-big-enterprises/360623?cid=SBX_ddj_well_wp_default_cpp&amp;itc=SBX_ddj_well_wp_default_cpp" name="SBX_ddj_well_wp_default_cpp">
+				Mid-Market Mayem: Cybercriminals Wreak Havoc Beyond Big Enterprises				</a>
+								</li>
+						
+</ul>
+<a title="More White Papers" href="http://www.drdobbs.com/whitepaper/cpp/more.html?cid=SBX_ddj_well_wp_default_cpp&amp;itc=SBX_ddj_well_wp_default_cpp" class="continue">More <span>&gt;&gt;</span></a>    </div>
+    <div class="related-resources" style="margin-bottom:10px;">
+    <!-- Taxonomy ID: --><!--not from cache.cache key--><h3>Reports</h3>		 
+     <!-- Taxonomy ID: -->  
+<ul class="archive">
+				
+				<li><!--Rule 10 -->		
+					<a href="http://analytics.informationweek.com/abstract/5/5116/Cloud-Computing/research-2011-state-of-cloud.html?cid=SBX_ddj_well_Analytics_default_cpp&amp;itc=SBX_ddj_well_Analytics_default_cpp" name="SBX_ddj_well_Analytics_default_cpp">
+				State of Cloud 2011: Time for Process Maturation				</a>
+								</li>
+				
+				<li><!--Rule 10 -->		
+					<a href="http://analytics.informationweek.com/abstract/5/5674/Cloud-Computing/research-saas-2011.html?cid=SBX_ddj_well_Analytics_default_cpp&amp;itc=SBX_ddj_well_Analytics_default_cpp" name="SBX_ddj_well_Analytics_default_cpp">
+				SaaS 2011: Adoption Soars, Yet Deployment Concerns Linger				</a>
+								</li>
+						
+</ul>
+<a title="More Reports" href="http://www.drdobbs.com/analytics/cpp/more.html?cid=SBX_ddj_well_Analytics_default_cpp&amp;itc=SBX_ddj_well_Analytics_default_cpp" class="continue">More <span>&gt;&gt;</span></a>    </div>
+    <div class="related-resources" style="margin-bottom:10px;">
+    <!-- Taxonomy ID: --><!--not from cache.cache key--><h3>Webcasts</h3>		 
+     <!-- Taxonomy ID: -->  
+<ul class="archive">
+				
+				<li><!--Rule 10 -->		
+					<a href="https://webinar.drdobbs.com/16758?keycode=SBX&amp;cid=SBX_ddj_well_Webcast_default_cpp&amp;itc=SBX_ddj_well_Webcast_default_cpp&amp;K=SBX_DDJ_WL" name="SBX_ddj_well_Webcast_default_cpp">
+				Asset Management For Electronics Industry				</a>
+								</li>
+				
+				<li><!--Rule 10 -->		
+					<a href="https://webinar.informationweek.com/17033?keycode=SBX&amp;cid=SBX_ddj_well_Webcast_default_cpp&amp;itc=SBX_ddj_well_Webcast_default_cpp&amp;K=SBX_DDJ_WL" name="SBX_ddj_well_Webcast_default_cpp">
+				Architecting Private and Hybrid Cloud Solutions: Best Practices Revealed				</a>
+								</li>
+						
+</ul>
+<a title="More Webcast" href="http://www.drdobbs.com/webcast/cpp/more.html?cid=SBX_ddj_well_Webcast_default_cpp&amp;itc=SBX_ddj_well_Webcast_default_cpp" class="continue">More <span>&gt;&gt;</span></a>    </div>
+<hr><!-- /  Related Reading Box -->
+<div class="dcolmask doublepage">
+<div class="dcolleft">
+			<div class="dcol1">
+			<!-- Column 1 start -->
+ 			<div id="left-col" style="width:160px;">
+				<div class="infolink">
+					<span style="font-size: 0.7em; font-weight: bold;">INFO-LINK</span>
+<ul style="color: rgb(33, 82, 190); font-size: 0.7em; list-style: none outside none; margin-top: 0px; padding: 8px 0px 0px;">
+<li style="padding-left: 15px; background: url(&quot;http://i.cmpnet.com/nc/mt/bg_left-nav.png&quot;) no-repeat scroll 5px 7px transparent; color: rgb(0, 59, 176); margin: 0px 0pt;">
+				<div id="div-gpt-ad-942957474691236830-24">
+			<script type="text/javascript">
+				googletag.display('div-gpt-ad-942957474691236830-24');
+			</script>
+		</div>
+	</li>
+<li style="padding-left: 15px; background: url(&quot;http://i.cmpnet.com/nc/mt/bg_left-nav.png&quot;) no-repeat scroll 5px 7px transparent; color: rgb(0, 59, 176); margin: 0px 0pt;">
+				<div id="div-gpt-ad-942957474691236830-25">
+			<script type="text/javascript">
+				googletag.display('div-gpt-ad-942957474691236830-25');
+			</script>
+		</div>
+	</li>
+<li style="padding-left: 15px; background: url(&quot;http://i.cmpnet.com/nc/mt/bg_left-nav.png&quot;) no-repeat scroll 5px 7px transparent; color: rgb(0, 59, 176); margin: 0px 0pt;">
+				<div id="div-gpt-ad-942957474691236830-26">
+			<script type="text/javascript">
+				googletag.display('div-gpt-ad-942957474691236830-26');
+			</script>
+		</div>
+	</li>
+<li style="padding-left: 15px; background: url(&quot;http://i.cmpnet.com/nc/mt/bg_left-nav.png&quot;) no-repeat scroll 5px 7px transparent; color: rgb(0, 59, 176); margin: 0px 0pt;">
+				<div id="div-gpt-ad-942957474691236830-27">
+			<script type="text/javascript">
+				googletag.display('div-gpt-ad-942957474691236830-27');
+			</script>
+		</div>
+	</li>
+</ul>
+
+
+
+
+				</div>
+				<br>
+				<br>
+				
+							<div id="div-gpt-ad-942957474691236830-28">
+			<script type="text/javascript">
+				googletag.display('div-gpt-ad-942957474691236830-28');
+			</script>
+		</div>
+					 	
+ 			</div>
+ 		</div>
+ 		<div class="dcol2" style="left:71%;width:70%;float:left;">
+		<!--  Commenting -->
+		<div id="dobbs_disqus">
+		<div id="disqus-hints-box">
+  <script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/jquery.colorbox-min.js"></script>
+<script type="text/javascript">
+	var brainyardDomain  = 'www.drdobbs.com';
+</script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/disqusHints.js"></script>
+<!-- This section is for calling the commenting policy pop-up -->
+<script>
+	$(document).ready(function(){
+		$(".commentingPolicy").colorbox({width:"420px",height:"300px",inline:true,href:"#inlineCommenting"});//end .htmlTags
+	});//end doc ready
+</script>
+<link rel="stylesheet" href="./Cruising With Topspeed | Dr Dobb&#39;s_files/colorbox.css" type="text/css">
+<link rel="stylesheet" href="./Cruising With Topspeed | Dr Dobb&#39;s_files/disqusHints.css" type="text/css">
+
+<div style="display:none">
+	<div id="inlineModal" style="padding:10px;">
+    	<div class="newsletterHeader">
+    		<img src="./Cruising With Topspeed | Dr Dobb&#39;s_files/dobbs_disqus_logo.gif">
+    	</div>
+    	<br><br> 
+    	<div class="markdown">
+      		<h3>Currently we allow the following HTML tags in comments:</h3>
+			<h3>Single tags</h3>
+			<p><i>These tags can be used alone and don't need an ending tag. </i></p>
+			<p><code>&lt;br&gt;</code> Defines a single line break <br><br> 
+			<code>&lt;hr&gt;</code> Defines a horizontal line</p>
+
+			<h3>Matching tags</h3>
+			<p><i>These require an ending tag - e.g. <code>&lt;i&gt;italic text&lt;/i&gt;</code> </i></p>
+			<p><code>&lt;a&gt;</code> Defines an anchor<br><br>
+			<code>&lt;b&gt;</code> Defines bold text<br><br>
+			<code>&lt;big&gt;</code> Defines big text<br><br>
+
+			<code>&lt;blockquote&gt;</code> Defines a long quotation<br><br>
+			<code>&lt;caption&gt;</code> Defines a table caption<br><br>
+			<code>&lt;cite&gt;</code> Defines a citation<br><br>
+			<code>&lt;code&gt;</code> Defines computer code text<br><br>
+			<code>&lt;em&gt;</code> Defines emphasized text<br><br>
+
+			<code>&lt;fieldset&gt;</code> Defines a border around elements in a form<br><br>
+			<code>&lt;h1&gt;</code> This is heading 1<br><br>
+			<code>&lt;h2&gt;</code> This is heading 2<br><br>
+			<code>&lt;h3&gt;</code> This is heading 3<br><br>
+			<code>&lt;h4&gt;</code> This is heading 4<br><br>
+			
+			<code>&lt;h5&gt;</code> This is heading 5<br><br>
+			<code>&lt;h6&gt;</code> This is heading 6<br><br>
+			<code>&lt;i&gt;</code> Defines italic text<br><br>
+			<code>&lt;p&gt;</code> Defines a paragraph<br><br>
+			<code>&lt;pre&gt;</code> Defines preformatted text<br><br>
+			
+			<code>&lt;q&gt;</code> Defines a short quotation<br><br>
+			<code>&lt;samp&gt;</code> Defines sample computer code text<br><br>
+			<code>&lt;small&gt;</code> Defines small text<br><br>
+			<code>&lt;span&gt;</code> Defines a section in a document<br><br>
+			<code>&lt;s&gt;</code> Defines strikethrough text<br><br>
+			
+			<code>&lt;strike&gt;</code> Defines strikethrough text <br><br>
+			<code>&lt;strong&gt;</code> Defines strong text <br><br>
+			<code>&lt;sub&gt;</code> Defines subscripted text <br><br>
+			<code>&lt;sup&gt;</code> Defines superscripted text <br><br>
+			<code>&lt;u&gt;</code> Defines underlined text<br><br></p>
+    	</div>  
+	</div><!-- /end  inline_mailinglist-->
+
+	<div id="inlineCommenting" style="padding:10px;" class="markdown">
+		  <p><i>Dr. Dobb's</i> encourages readers to engage in spirited, healthy debate, including taking us to task.  
+		  However, <i>Dr. Dobb's</i> moderates all comments posted to our site, and reserves the right to modify or remove any content that it determines to be derogatory, offensive, inflammatory, vulgar, irrelevant/off-topic, racist or obvious marketing or spam. <i>Dr. Dobb's</i> further reserves the right to disable the profile of any commenter participating in said activities.</p>
+	</div>	
+</div>
+<table cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#f3f3f3">
+	<tbody><tr>
+    	<td colspan="2">&nbsp;</td>  
+	</tr>
+	<tr>
+   	 	<td width="34"><img src="./Cruising With Topspeed | Dr Dobb&#39;s_files/hintbox_info.jpg" alt="Disqus Tips" border="0" align="left" height="34"></td> 
+		<td><font style="font-family: Arial, Helvetica, Geneva, SunSans-Regular, sans-serif; color: #000000; font-size: 11px;">
+			<strong>To upload an avatar photo,</strong> first <a href="http://disqus.com/dashboard/" style="font-family: Arial,Helvetica,Geneva,SunSans-Regular,sans-serif; color: #003bb0; font-size: 11px;" target="_blank">complete your Disqus profile.</a> | <a href="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335#" class="htmlTags" style="font-family: Arial,Helvetica,Geneva,SunSans-Regular,sans-serif; color: #003bb0; font-size: 11px;">View the list</a> of <strong>supported HTML tags</strong> you can use to style comments. | Please read our <a href="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335#" class="commentingPolicy" style="font-family: Arial,Helvetica,Geneva,SunSans-Regular,sans-serif; color: #003bb0; font-size: 11px;"><strong>commenting policy.</strong></a>
+			</font>
+		</td>
+	</tr>
+	<tr>
+       <td colspan="2">&nbsp;</td>  
+	</tr>
+</tbody></table>  
+
+</div>
+<div id="mythread">
+</div>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+var jmessage = '';
+var jtimestamp = '';
+var jhmac = '';
+var jmessage = '';
+var isLoggedIn = '';
+$.ajax({
+   type: "GET",
+   url: "/disqussetting",
+   data: "referer="+encodeURIComponent(window.location.href),
+   success: function(data){		   
+	   if (data != null)
+		{
+		   jmessage = data.jmessage;
+		   jtimestamp = data.jtimestamp;
+		   jhmac = data.jhmac;
+		   isLoggedIn = data.isLoggedIn;
+		   if(!isLoggedIn) // do only if he is not logged in
+		   {
+			   $('#mythread').load('/disqus/showcomments/format/html', {'success':encodeURIComponent(window.location.href),
+				   'articleId': '184408335',				  
+				   'assetId': '156622',
+				   'actionType' : '' });
+		   }					
+		}
+   },
+   dataType: "json",
+   async: false,
+   cache: false
+ }	
+ );	
+
+				if(jhmac == null || jhmac == ''){
+				var headID = document.getElementsByTagName("head")[0];         
+				var cssNode = document.createElement('link');
+				cssNode.type = 'text/css';
+				cssNode.rel = 'stylesheet';
+				cssNode.href = 'http://i.techweb.com/brainyard/css/disqusLoggedOff.css';
+				cssNode.media = 'screen';
+				headID.appendChild(cssNode);
+			}
+			else
+			{
+								document.write("<style type=\"text/css\">#techwebCommentLogin{display:none;}</style>");
+
+			}
+	-->
+	 
+</script>
+<script type="text/javascript">
+  if (jmessage == null)
+        $("div#disqus-hints-box").hide();
+</script>
+<script type="text/javascript">
+var disqus_config = function () {
+
+	var hmac1 = jhmac;
+	var htimestamp = jtimestamp;
+	var hmessage = jmessage;	
+	if(hmac1 != null){		
+			this.page.remote_auth_s3 = hmessage + ' ' + hmac1 + ' ' + htimestamp;
+			this.page.api_key = "Qq6ImCn7MIzMK699FJY4iuhauNLipx3XghP08sjP0Wz9Ipk81mTrcqxz85A8OOqv";			
+	}
+			
+    this.sso = {
+          name:    "UBM TechWeb",
+          button:  "http://i.techweb.com/informationweek/images/ubm-techweb-logo.gif",
+          icon:    "http://i.cmpnet.com/brainyard/images/favicon.ico",
+          url:     "javascript:NextGen.disqusCommentForm('http://www.drdobbs.com/login?assetId=156622&k=2LGCMTDD&successfulLoginRedirect=http%3A%2F%2Fwww.drdobbs.com%2Fcpp%2Fcruising-with-topspeed%2F184408335');",
+          logout:  "http://www.drdobbs.com/logout?redirect=http%3A%2F%2Fwww.drdobbs.com%2Fcpp%2Fcruising-with-topspeed%2F184408335",
+          width:   "800",
+          height:  "400"
+    };
+    this.callbacks.onNewComment = [function() {trackComment();}];
+};
+</script>
+
+<style type="text/css">
+.dsq-post-tools .dsq-post-as .dsq-button{
+	background: url(none);
+	background-color:#c90000;
+}
+
+.dsq-post-tools .dsq-post-as .dsq-button:active{
+	background: url(none);
+	background-color:#ed0404;
+}
+
+.dsq-post-tools .dsq-post-as .dsq-button:hover{
+	background: url(none);
+	background-color:#e00000;
+}
+.dsq-post-tools .dsq-post-as .dsq-button{
+text-shadow:none;
+color:white;
+}
+.dsq-comment-text blockquote{
+	border-left:1px solid #555555;
+	padding-left:15px;
+	padding-top:5px;
+	padding-bottom:5px;
+	font-style:italic;
+	font-size:15px;
+	margin:15px;
+	color:#999999;
+	margin-bottom:10px;
+	padding-right:15px;
+	font-weight:bold;
+}
+#dsq-content .dsq-comment-meta li, #dsq-content .dsq-comment-actions li {
+    float: left;
+    font-size: 65%;
+    margin: 0 10px 0 0;
+}
+
+#dsq-content #dsq-footer li {
+    float: left;
+    font-size: 0.75em;
+    margin: 0 10px 0 0;
+}
+
+#dsq-content .dsq-comment-text {
+    display: inline;
+    /* font-size: .80em; */
+}
+</style>
+
+<a name="comments"></a>
+<div id="disqus_thread">
+		
+</div>
+
+
+<script type="text/javascript">
+if(isLoggedIn) {
+			var disqus_developer = 1;
+		
+    var disqus_shortname = 'drdobbs';
+    var disqus_domain = 'disqus.com';
+    var disqus_identifier = 'article_184408335';
+	var disqus_url = 'http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335';
+		var disqus_title = '"Cruising With Topspeed"';
+		if(disqus_identifier !== null && disqus_identifier != '')
+{
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+	}
+}
+    
+</script>
+		</div> 
+		<!-- /  Commenting -->
+			</div>
+</div>
+</div>
+
+<!-- Finally, to actually run the highlighter, you need to include this JS on your page -->
+<script type="text/javascript">
+     SyntaxHighlighter.all();
+</script>	
+		</div>
+		<script>var ngGatedContentPage = '1';</script>
+		<div id="right-col">
+			<!-- div class="subsection " -->
+ <!-- /div -->						
+		<script type="text/javascript">
+			if (document.documentElement.clientWidth > 767){
+				document.write('<div id="div-gpt-ad-942957474691236830-4">');
+				googletag.display('div-gpt-ad-942957474691236830-4');
+				document.write('</div>');
+			}
+		</script> 
+		<!--
+			<br/><br/>
+			
+			<div class="subsection sponsored-content"> -->
+				<!-- ?php echo $this->render('/shared/right/articlepremiumcontent.phtml')? -->
+			<!-- </div> -->
+			<div class="recent-articles non-mobile-unit">
+				
+	<h2>C/C++ Recent Articles</h2>
+	<ul>	
+				<li><a href="http://www.drdobbs.com/cpp/dr-dobbs-archive/240169474" class="contentgating_article">Dr. Dobb's Archive</a></li>
+				<li><a href="http://www.drdobbs.com/cpp/jolt-awards-2015-coding-tools/240169420" class="contentgating_article">Jolt Awards 2015: Coding Tools</a></li>
+				<li><a href="http://www.drdobbs.com/cpp/building-nodejs-projects-in-visual-studi/240169356" class="contentgating_article">Building Node.js Projects in Visual Studio</a></li>
+				<li><a href="http://www.drdobbs.com/cpp/building-portable-games-in-c/240169334" class="contentgating_article">Building Portable Games in C++</a></li>
+				<li><a href="http://www.drdobbs.com/cpp/c-and-nets-sudden-ubiquity/240169282" class="contentgating_article">C# and .NET's Sudden Ubiquity</a></li>
+				<li><a href="http://www.drdobbs.com/cpp/" class="contentgating_article"></a></li>
+				<li><a href="http://www.drdobbs.com/cpp/" class="contentgating_article"></a></li>
+			</ul>			</div>
+			 
+			<span class="non-mobile-unit">
+						
+			<div class="subsection mostpopular">
+				<h2>Most Popular</h2>
+
+<div class="tab_controls">
+	<a id="articles" class="current" href="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335#">Stories</a>
+	<a id="blogs" href="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335#">Blogs</a>
+</div>
+<div id="mostpopular" class="box_wrap">
+	<ul>
+				<li>
+					<a name="dobbs-callout-mostpop" href="http://www.drdobbs.com/cpp/the-c14-standard-what-you-need-to-know/240169034" class="contentgating_article">The C++14 Standard: What You Need to Know</a>
+					</li>
+				<li>
+					<a name="dobbs-callout-mostpop" href="http://www.drdobbs.com/cpp/a-simple-and-efficient-fft-implementatio/199500857" class="contentgating_article">A Simple and Efficient FFT Implementation in C++:<br> Part I</a>
+					</li>
+				<li>
+					<a name="dobbs-callout-mostpop" href="http://www.drdobbs.com/cpp/state-machine-design-in-c/184401236" class="contentgating_article">State Machine Design in C++</a>
+					</li>
+				<li>
+					<a name="dobbs-callout-mostpop" href="http://www.drdobbs.com/cpp/lambdas-in-c11/240168241" class="contentgating_article">Lambdas in C++11</a>
+					</li>
+				<li>
+					<a name="dobbs-callout-mostpop" href="http://www.drdobbs.com/cpp/a-lightweight-logger-for-c/240147505" class="contentgating_article">A Lightweight Logger for C++</a>
+					</li>
+				<li>
+					<a name="dobbs-callout-mostpop" href="http://www.drdobbs.com/cpp/" class="contentgating_article"></a>
+					</li>
+				<li>
+					<a name="dobbs-callout-mostpop" href="http://www.drdobbs.com/cpp/" class="contentgating_article"></a>
+					</li>
+		</ul></div>
+
+<div id="mostpopular" class="box_wrap" style="display: none;">
+	<ul>
+				<li>
+					<a name="dobbs-callout-mostpop-blog" href="http://www.drdobbs.com/cpp/c11-uniqueptr/240002708" class="contentgating_article">C++11: unique_ptr</a>
+					</li>
+				<li>
+					<a name="dobbs-callout-mostpop-blog" href="http://www.drdobbs.com/cpp/c11s-async-template/240001196" class="contentgating_article">C++11's async Template</a>
+					</li>
+				<li>
+					<a name="dobbs-callout-mostpop-blog" href="http://www.drdobbs.com/cpp/abstractions-for-binary-search-part-10-p/240169437" class="contentgating_article">Abstractions For Binary Search, Part 10: Putting It All Together</a>
+					</li>
+				<li>
+					<a name="dobbs-callout-mostpop-blog" href="http://www.drdobbs.com/cpp/its-hard-to-compare-floating-point-numbe/240149806" class="contentgating_article">It's Hard To Compare Floating-Point Numbers</a>
+					</li>
+				<li>
+					<a name="dobbs-callout-mostpop-blog" href="http://www.drdobbs.com/cpp/auto-types-and-range-based-for-statement/232900460" class="contentgating_article">Auto Types and Range-Based For Statements in C++11</a>
+					</li>
+				<li>
+					<a name="dobbs-callout-mostpop-blog" href="http://www.drdobbs.com/cpp/" class="contentgating_article"></a>
+					</li>
+				<li>
+					<a name="dobbs-callout-mostpop-blog" href="http://www.drdobbs.com/cpp/" class="contentgating_article"></a>
+					</li>
+		</ul></div>
+			</div>
+			
+			<div class="box video">
+							</div>
+			
+			<div class="subsection sponsored-content">
+				<style>
+#right-col .subsection .sponsored{
+    font-size: 0.7em !important;
+}
+
+</style>
+
+	<h2>This month's Dr. Dobb's Journal</h2>
+	<div class="sponsored">
+		<div class="whitepaper">
+			<div align="center">
+				<a href="http://www.drdobbs.com/digital/20141022?k=ddjtm&amp;cid=onedit_ds_ddjtm">
+					<img height="115" width="190" border="0" alt="Dr. Dobb&#39;s Digital Digest - October 2014" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/DrDobbs_10_22_Cover.jpg">
+				</a>
+			</div>
+			<p>
+				<a href="http://www.drdobbs.com/digital/20141022?k=ddjtm&amp;cid=onedit_ds_ddjtm"><b>This month</b></a>, 
+Dr. Dobb's Journal is devoted to mobile programming. We introduce you to Apple's new Swift programming language, discuss the perils of being the third-most-popular mobile platform, revisit SQLite on Android		
+				, <b><a href="http://www.drdobbs.com/digital/20141022?k=ddjtm&amp;cid=onedit_ds_ddjtm">and much more!</a></b><br><br>
+				<a href="http://www.drdobbs.com/digital/20141022?k=ddjtm&amp;cid=onedit_ds_ddjtm">Download the latest issue today. &gt;&gt;</a> 
+			</p>
+		</div>	
+	</div>				 
+			</div>
+			
+			<div id="div-gpt-ad-942957474691236830-5">
+			<script type="text/javascript">
+				googletag.display('div-gpt-ad-942957474691236830-5');
+			</script>
+		</div>
+		</span>
+			<!-- Upcoming Events -->
+<style>
+#upcoming_tabs .tab-content {
+	border: 1px solid #5F953C;
+	border-top: none;
+	margin-top: -10px;
+	width: 323px;
+	font-size: 12px;
+	padding: 20px 5px 10px;
+}
+#upcoming_tabs .tab-content li {
+	margin: 0 15px;
+	list-style: none;
+}
+#upcoming_tabs .tab-content p {
+	margin: 0 10px;
+}
+#upcoming_tabs .tab-content p img {
+	max-width: 100px;
+	margin-bottom: 5px;
+}
+#upcoming_tabs .tab-content a {
+ font-size: 12px;
+  font-weight: normal;
+}
+</style>
+
+
+   
+<div class="subsection">
+
+    <h2>Upcoming Events</h2>
+    
+    <div id="upcoming_tabs">
+    
+       <div class="tab_controls">
+         <a title="Live Events" href="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335#tab_live-events">Live Events</a>
+         <a title="WebCasts" href="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335#tab_webcasts">WebCasts</a>
+                 
+       </div>
+              
+       <div class="tab-content" style="display: none;" id="tab_live-events">
+           <!-- Taxonomy ID: --><!--not from cache.cache key-->		 
+     	  <ul class="events">
+
+                
+
+                     <li><a href="https://www.enterpriseconnect.com/orlando?_mc=iwksmbx&amp;cid=SBX_ddj_fture_LiveEvent_default_cpp&amp;itc=SBX_ddj_fture_LiveEvent_default_cpp" target="_blank">Enterprise Connect 2019 - Build Your Comms &amp; Collaboration Future<span class="eventName"> - Enterprise Connect Orlando 2019</span></a>
+	                 </li>     
+
+                           
+
+                     <li><a href="https://www.enterpriseconnect.com/orlando/conference/enterprise-communications-collaboration?_mc=iwksmbx&amp;cid=SBX_ddj_fture_LiveEvent_default_cpp&amp;itc=SBX_ddj_fture_LiveEvent_default_cpp" target="_blank">Communications &amp; Collaboration 2022 at EC19 Orlando March 18-21<span class="eventName"> - Enterprise Connect Orlando 2019</span></a>
+	                 </li>     
+
+           </ul>
+  
+ 
+   
+			
+       </div>
+      
+       <div class="tab-content" style="display: none;" id="tab_webcasts">                 
+         <!-- Taxonomy ID: --><!--not from cache.cache key-->		 
+     <!-- Taxonomy ID: --> 
+                        	<li><!--Rule 10 --><a target="_new" href="https://webinar.informationweek.com/16930?keycode=SBX&amp;cid=SBX_ddj_fture_Webcast_default_cpp&amp;itc=SBX_ddj_fture_Webcast_default_cpp&amp;K=SBX_DDJ_FT">Intrusion Prevention Systems: What to Look for in a Solution</a>                        	
+                            </li>
+                                                	<li><!--Rule 10 --><a target="_new" href="https://webinar.informationweek.com/17033?keycode=SBX&amp;cid=SBX_ddj_fture_Webcast_default_cpp&amp;itc=SBX_ddj_fture_Webcast_default_cpp&amp;K=SBX_DDJ_FT">Architecting Private and Hybrid Cloud Solutions: Best Practices Revealed</a>                        	
+                            </li>
+                                                	<li><!--Rule 10 --><a target="_new" href="https://webinar.darkreading.com/16851?keycode=SBX&amp;cid=SBX_ddj_fture_Webcast_default_cpp&amp;itc=SBX_ddj_fture_Webcast_default_cpp&amp;K=SBX_DDJ_FT">How to Stop Web Application Attacks</a>                        	
+                            </li>
+                                                	<li><!--Rule 10 --><a target="_new" href="https://webinar.informationweek.com/16865?keycode=SBX&amp;cid=SBX_ddj_fture_Webcast_default_cpp&amp;itc=SBX_ddj_fture_Webcast_default_cpp&amp;K=SBX_DDJ_FT">Accelerate Cloud Computing Success with Open Standards</a>                        	
+                            </li>
+                                                	<li><!--Rule 10 --><a target="_new" href="https://webinar.banktech.com/16833?keycode=SBX&amp;cid=SBX_ddj_fture_Webcast_default_cpp&amp;itc=SBX_ddj_fture_Webcast_default_cpp&amp;K=SBX_DDJ_FT">How to Create an End-to-End Enterprise Payments Hub</a>                        	
+                            </li>
+                          <br>	   
+		   <br>
+           		 <div class="sbarchive_bottomleft"><a href="http://www.drdobbs.com/webcast/cpp/more.html?cid=SBX_ddj_fture_Webcast_default_cpp?itc=SBX_ddj_fture_Webcast_default_cpp" class="continue">More Webcasts<span>&gt;&gt;</span></a></div>
+     	   
+ <!-- Render Assets of CurationType 'Webcast' -->       
+		       
+       </div>       
+                
+    
+    </div><!--/upcoming_border-->
+</div><!--/upcoming-->
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#upcoming_tabs .tab-content').hide();
+	$('#upcoming_tabs .tab-content:first').show();
+	$('#upcoming_tabs .tab_controls a:first').addClass('current');
+ 
+	$('#upcoming_tabs .tab_controls a').click(function(){
+		$('#upcoming_tabs .tab_controls a').removeClass('current');
+		$(this).addClass('current');
+		var currentTab = $(this).attr('href');
+		$('#upcoming_tabs .tab-content').hide();
+		$(currentTab).show();
+		return false;
+	});
+});
+</script>
+<div class="recent-articles">
+<div id="smartbox">
+	<h2>Featured Reports</h2>
+	<div class="bar" style="padding-top:8px;padding-bottom:8px;">&nbsp;
+			<div class="left">&nbsp;</div>
+			<div class="right"><a title="UBM Smart boxes auto deliver premium content that is contextually relevant to the article or site section where it is located" href="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335#">What's this?</a></div>
+		</div>
+	<div class="resources clearfix">
+		<!-- Taxonomy ID: --><!--not from cache.cache key-->		 
+     <!-- Taxonomy ID: -->  
+<ul class="archive">
+				
+				<li><!--Rule 10 -->		
+					<a href="http://www.informationweek.com/gogreen/031313mr?cid=SBX_ddj_fture_Analytics_default_cpp&amp;itc=SBX_ddj_fture_Analytics_default_cpp" name="SBX_ddj_fture_Analytics_default_cpp">
+				Cloud Collaboration Tools: Big Hopes, Big Needs				</a>
+								</li>
+				
+				<li><!--Rule 10 -->		
+					<a href="http://analytics.informationweek.com/abstract/5/4638/Cloud-Computing/strategy-the-hybrid-enterprise-data-center.html?cid=SBX_ddj_fture_Analytics_default_cpp&amp;itc=SBX_ddj_fture_Analytics_default_cpp" name="SBX_ddj_fture_Analytics_default_cpp">
+				Strategy: The Hybrid Enterprise Data Center				</a>
+								</li>
+				
+				<li><!--Rule 10 -->		
+					<a href="http://analytics.informationweek.com/abstract/5/5116/Cloud-Computing/research-2011-state-of-cloud.html?cid=SBX_ddj_fture_Analytics_default_cpp&amp;itc=SBX_ddj_fture_Analytics_default_cpp" name="SBX_ddj_fture_Analytics_default_cpp">
+				State of Cloud 2011: Time for Process Maturation				</a>
+								</li>
+				
+				<li><!--Rule 10 -->		
+					<a href="http://analytics.informationweek.com/abstract/5/5674/Cloud-Computing/research-saas-2011.html?cid=SBX_ddj_fture_Analytics_default_cpp&amp;itc=SBX_ddj_fture_Analytics_default_cpp" name="SBX_ddj_fture_Analytics_default_cpp">
+				SaaS 2011: Adoption Soars, Yet Deployment Concerns Linger				</a>
+								</li>
+				
+				<li><!--Rule 10 -->		
+					<a href="http://analytics.informationweek.com/abstract/21/7616/Security/database-defenses.html?cid=SBX_ddj_fture_Analytics_default_cpp&amp;itc=SBX_ddj_fture_Analytics_default_cpp" name="SBX_ddj_fture_Analytics_default_cpp">
+				Database Defenses				</a>
+								</li>
+						
+</ul>
+		<div class="left" style="margin-left: 28px !important;font-family: verdana;font-size: 10px;"><a href="http://www.drdobbs.com/analytics/cpp/more.html?cid=SBX_ddj_fture_Analytics_default_cpp?itc=SBX_ddj_fture_Analytics_default_cpp">More &gt;&gt;</a></div>
+		<div class="right"><img src="./Cruising With Topspeed | Dr Dobb&#39;s_files/smartbox.PNG"></div>	
+	</div>
+</div>
+<br>
+<div id="smartbox">
+	<h2>Featured Whitepapers</h2>
+	<div class="bar" style="padding-top:8px;padding-bottom:8px;">&nbsp;
+			<div class="left">&nbsp;</div>
+			<div class="right"><a title="UBM Smart boxes auto deliver premium content that is contextually relevant to the article or site section where it is located" href="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335#">What's this?</a></div>
+		</div>
+	<div class="resources clearfix">
+		<!-- Taxonomy ID: --><!--not from cache.cache key-->		 
+     <!-- Taxonomy ID: -->  
+<ul class="archive">
+				
+				<li><!--Rule 10 -->		
+					<a href="http://www.informationweek.com/whitepaper/risk-management-security/security-management-&amp;-analytics/vulnerability-threat-management-in-2015/360323?cid=SBX_ddj_fture_wp_default_cpp&amp;itc=SBX_ddj_fture_wp_default_cpp" name="SBX_ddj_fture_wp_default_cpp">
+				Vulnerability Threat Management in 2015				</a>
+								</li>
+				
+				<li><!--Rule 10 -->		
+					<a href="http://www.informationweek.com/whitepaper/platform-as-a-service/cloud-services/overview:-cloud-operations-platfom-for-aws/360053?cid=SBX_ddj_fture_wp_default_cpp&amp;itc=SBX_ddj_fture_wp_default_cpp" name="SBX_ddj_fture_wp_default_cpp">
+				Overview: Cloud Operations Platfom for AWS				</a>
+								</li>
+				
+				<li><!--Rule 10 -->		
+					<a href="http://www.informationweek.com/whitepaper/software-as-a-service/cloud-services/simplify-it-with-cloud-based-wireless-management/359923?cid=SBX_ddj_fture_wp_default_cpp&amp;itc=SBX_ddj_fture_wp_default_cpp" name="SBX_ddj_fture_wp_default_cpp">
+				Simplify IT With Cloud-Based Wireless Management				</a>
+								</li>
+				
+				<li><!--Rule 10 -->		
+					<a href="http://www.informationweek.com/whitepaper/cloud/cloud-services/state-of-private-cloud-report:-lessons-from-early-adopters/359753?cid=SBX_ddj_fture_wp_default_cpp&amp;itc=SBX_ddj_fture_wp_default_cpp" name="SBX_ddj_fture_wp_default_cpp">
+				State of Private Cloud Report: Lessons from Early Adopters				</a>
+								</li>
+				
+				<li><!--Rule 10 -->		
+					<a href="http://www.informationweek.com/whitepaper/big-data/big-data-analytics/rogue-wave-tools-and-libraries-for-big-data/359603?cid=SBX_ddj_fture_wp_default_cpp&amp;itc=SBX_ddj_fture_wp_default_cpp" name="SBX_ddj_fture_wp_default_cpp">
+				Rogue Wave Tools and Libraries for Big Data				</a>
+								</li>
+						
+</ul>
+		<div class="left" style="margin-left: 28px !important;font-family: verdana;font-size: 10px;"><a href="http://www.drdobbs.com/whitepaper/cpp/more.html?cid=SBX_ddj_fture_wp_default_cpp?itc=SBX_ddj_fture_wp_default_cpp">More &gt;&gt;</a></div>
+		<div class="right"><img src="./Cruising With Topspeed | Dr Dobb&#39;s_files/smartbox.PNG"></div>	
+	</div>
+</div>
+<br>
+</div>
+ 
+			<div class="subsection mostrecent non-mobile-unit">
+				<h2>Most Recent Premium Content</h2>
+<div class="tab_controls">
+	<a class="current" href="http://www.drdobbs.com/digitaledition/">Digital Issues</a>
+</div>	
+<div class="box_wrap">
+<ul>
+
+<b>2014</b><br>
+<b>Dr. Dobb's Journal</b>
+<li><a href="http://www.drdobbs.com/digital/20141022">November - <strong>Mobile Development</strong></a></li>
+<li><a href="http://dc.ubm-us.com/i/350594">August - <strong>Web Development</strong></a></li>
+<li><a href="http://dc.ubm-us.com/i/300036/">May - <strong>Testing</strong></a></li>
+<li><a href="http://dc.ubm-us.com/i/245989">February - <strong>Languages</strong></a></li>
+<br>
+
+<b>Dr. Dobb's Tech Digest</b><br>
+<li><a href="http://www.drdobbs.com/digital/20140813">DevOps</a></li>
+<li><a href="http://www.drdobbs.com/digital/20140626">Open Source</a></li>
+<li><a href="http://www.drdobbs.com/digital/20140514/">Windows and .NET programming</a></li>
+<li><a href="http://www.drdobbs.com/digital/012914/">The Design of Messaging Middleware and 10 Tips from Tech Writers</a></li>
+<li><a href="http://www.drdobbs.com/digital/022614">Parallel Array Operations in Java 8 and Android on x86: Java Native Interface and the Android Native Development Kit</a></li>
+<br>
+
+<b>2013</b>
+<li><a href="http://www.drdobbs.com/digital/121712/?cid=ddj_premium_January2013">January - <strong>Mobile Development</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/012213/?cid=ddj_premium_February2013">February - <strong>Parallel Programming</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/022513/?cid=ddj_premium_March2013">March - <strong>Windows Programming</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/032513/?cid=ddj_premium_April2013">April - <strong>Programming Languages</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/042213/?cid=ddj_premium_May2013">May - <strong>Web Development</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/052013/?cid=ddj_premium_June2013">June - <strong>Database Development</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/062413/?cid=ddj_premium_July2013">July - <strong>Testing</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/072213/?cid=ddj_premium_August2013">August - <strong>Debugging and Defect Management</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/082613">September - <strong>Version Control</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/092313/">October - <strong>DevOps</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/102113">November- <strong>Really Big Data</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/111113?k=ddjtm&amp;cid=onedit_ds_ddjtm">December - <strong>Design</strong></a></li>
+<br>
+
+<b>2012</b>
+<li><a href="http://www.drdobbs.com/digital/121911/?cid=ddj_premium_January2012">January - <strong>C &amp; C++</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/011912/?cid=ddj_premium_February2012">February - <strong>Parallel Programming</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/021912/?cid=ddj_premium_March2012">March - <strong>Microsoft Technologies</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/031912/?cid=ddj_premium_April2012">April - <strong>Mobile Development</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/042312/?cid=ddj_premium_May2012">May - <strong>Database Programming</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/052112/?cid=ddj_premium_June2012">June - <strong>Web Development</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/061812/?cid=ddj_premium_July2012">July - <strong>Security</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/072312/?cid=ddj_premium_August2012">August - <strong>ALM &amp; Development Tools</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/082012/?cid=ddj_premium_September2012">September - <strong>Cloud &amp; Web Development</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/092412/?cid=ddj_premium_October2012">October - <strong>JVM Languages</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/102212/?cid=ddj_premium_November2012">November - <strong>Testing</strong></a></li>
+<li><a href="http://www.drdobbs.com/digital/111912/?cid=ddj_premium_December2012">December - <strong>DevOps</strong></a></li>
+<br>	
+
+</ul>
+</div>			</div>
+			
+		</div>
+		
+		<script src="http://content.dl-rms.com/rms/19467/nodetag.js"></script>
+		<div id="bottom" align="center" style="clear: both;">
+
+   			<div id="div-gpt-ad-942957474691236830-29">
+			<script type="text/javascript">
+				googletag.display('div-gpt-ad-942957474691236830-29');
+			</script>
+		</div>
+	
+			<footer>
+<br><br>
+
+<!-- BEGIN GREY FOOTER -->
+<link rel="stylesheet" type="text/css" href="./Cruising With Topspeed | Dr Dobb&#39;s_files/style-ddj.css">
+<div align="center">
+  <div id="footergrey">
+    <div id="top">
+    <!--GREY FOOTER LEFT SIDE -->
+    <div id="left">
+    <a href="http://www.ubmtechweb.com/" target="_blank"><img src="./Cruising With Topspeed | Dr Dobb&#39;s_files/UBM_Logo_PMS669.png" width="88" height="111" border="0" alt="UBM Tech"></a>
+    </div><!-- / GREY FOOTER LEFT SIDE -->
+    <!-- GREY FOOTER rightlinks SIDE -->
+    <div id="rightlinks">
+      <div class="list-div" id="tech-brands">
+        <ul class="first-list">
+          <li class="footer_title">TECHNOLOGY GROUP</li> 
+			<li><a href="http://www.blackhat.com/us-14/" target="_blank">Black Hat</a></li>
+			<li><a target="_blank" href="http://contentmarketinginstitute.com/">Content Marketing Institute</a></li>
+			<li><a target="_blank" href="http://www.contentmarketingworld.com/">Content Marketing World</a></li>
+			<li><a href="http://www.darkreading.com/" target="_blank">Dark Reading</a></li> 
+                  </ul>
+        <ul> 
+		    <li><a target="_blank" href="http://www.enterpriseconnect.com/">Enterprise Connect</a></li>
+			<li><a href="http://www.gdconf.com/" target="_blank">GDC</a></li>
+			<li><a href="http://www.gamasutra.com/" target="_blank">Gamasutra</a></li>
+		    <li><a href="http://www.thinkhdi.com/" target="_blank">HDI</a></li>
+
+        </ul>
+        <ul>
+          
+          
+      
+          <li><a href="http://www.icmi.com/" target="_blank">ICMI</a></li>
+          <li><a href="http://www.informationweek.com/" target="_blank">InformationWeek</a></li>
+	<!--  <li><a target="_blank" href="http://insecurity.com/">INsecurity</a></li> -->
+	  <li><a href="http://www.interop.com/" target="_blank">Interop ITX</a></li>
+	  <li><a href="http://www.networkcomputing.com/" target="_blank">Network Computing</a></li>
+           
+        </ul>
+        <ul class="last-list">
+        
+          <li><a href="http://www.nojitter.com/" target="_blank">No Jitter</a></li>
+          <li><a href="http://www.smworld.com/" target="_blank">Service Management World</a></li>
+		  <li><a href="http://www.xrdconf.com/" target="_blank">XRDC</a></li>
+    </ul>
+      </div>
+      <div class="list-div" id="communities-served">
+        <ul class="first-list">
+          <li class="footer_title">COMMUNITIES SERVED</li>
+ <li><a target="_blank" href="http://tech.ubm.com/community-brands/content-marketing-2/">Content Marketing</a></li>
+
+          <li><a href="http://tech.ubm.com/community-brands/enterprise-it/" target="_blank">Enterprise IT</a></li>
+          <li><a href="http://tech.ubm.com/community-brands/enterprise-communications/" target="_blank">Enterprise Communications</a></li>
+          <li><a href="http://tech.ubm.com/community-brands/game-and-app-developers/" target="_blank">Game Developers</a></li>
+          <li><a href="http://tech.ubm.com/community-brands/information-security/" target="_blank">Information Security</a></li>
+          <li><a href="http://tech.ubm.com/community-brands/technical-service-and-support/" target="_blank">IT Services &amp; Support</a></li>
+        </ul>
+      </div>
+      <div class="list-div" id="working-with-us">
+        <ul class="first-list">
+          <li class="footer_title">WORKING WITH US</li>
+          <li><a href="http://createyournextcustomer.techweb.com/contact-us/" target="_blank">Advertising Contacts</a></li>
+          <li><a href="http://events.ubm.com/?company=10" target="_blank">Event Calendar</a></li>
+          <li><a href="http://createyournextcustomer.techweb.com/" target="_blank">Tech Marketing</a></li>
+          <li><a href="http://createyournextcustomer.techweb.com/" target="_blank">Solutions</a></li>
+          <li><a href="http://tech.ubm.com/contact-us/" target="_blank">Contact Us</a></li>
+          <li><a href="https://wrightsmedia.com/sites/ubm/index.cfm" target="_blank">Licensing</a></li>
+        </ul>
+      </div>
+    </div><!-- / GREY FOOTER rightlinks -->
+  </div><!--end top-->
+    <div style="clear:both;"></div><!-- // to clear the right and left evenly // -->
+  <div id="bottom">
+    <ul class="blue">
+      <li><a href="http://legal.us.ubm.com/terms-of-service/" target="_blank" class="blue">Terms of Service</a></li>
+      <li><a href="http://legal.us.ubm.com/privacy-policy/" target="_blank" class="blue">Privacy Statement</a></li>
+      <li><a target="_blank" href="http://reg.ubmamevents.com/UBMLegalEntities">Legal Entities</a></li>
+      <li>Copyright © 2018 UBM, All rights reserved</li>
+    </ul>
+  </div>
+  </div><!-- / END footergrey -->
+</div><!-- / END align="center" -->
+<!-- / END GREY FOOTER -->
+
+<style>
+
+/* BEGIN FOOTER CSS */
+
+#footer {
+	clear: both;
+	font-family:arial, helvetica, sans-serif;
+	color: #fff;
+	border-top: 4px solid #febc00;
+	/* border-bottom: 2px solid #ccc;
+	orignal footer bottom color.  changed w/ refresh 0/19/2010 - JH
+	border-bottom: 4px solid #971c10;
+	*/
+	font-size: .9em;
+	text-align:center;
+}
+
+ 
+
+#footer a,
+#footer a:visited {
+	color: #fff;	
+	text-decoration: none;
+	
+}
+ 
+
+#footer #footer2 ul {
+	margin: 0;
+	padding: 5px 0;
+	list-style:none;
+	line-height: 1.4em;
+	text-align:center;
+	width:999px;
+}
+
+#footer #footer2 li {
+	font-weight: normal;
+	padding: 0 0 0 15px;
+	display: inline;
+	text-indent:0;
+	text-decoration: none;	
+}
+ 
+#footer-a {
+	background-color: #369f2b;
+	text-align:center;
+}
+
+#footer-b {
+	background-color: #16530f;
+	text-align:center;
+}
+ 
+#footer #footer2 #footer-a li a,
+#footer #footer2 #footer-c li a {
+	background: url("http://twimgs.com/ddj/v2/images/footer_vertline.gif") no-repeat 1px .15em;
+	padding-left:20px;
+	margin-top:10px;
+	text-indent:0;	
+}
+
+#footer #footer2 #footer-b li a {
+	background: url("http://twimgs.com/ddj/v2/images/footer_vertline.gif") no-repeat 1px .15em;
+	padding-left:20px;
+	margin-top:10px;
+	text-indent:0;
+}
+
+#footer #footer2 #footer-a .first,
+#footer #footer2 #footer-b .first,
+#footer #footer2 #footer-c .first {
+	background: none;
+	padding-left:0;
+	text-indent:0;
+}
+
+
+#footer #footer2 li{
+	background: none;
+	
+}
+
+/* END FOOTER CSS */
+
+</style>
+
+<div id="footer">
+
+<div id="footer2">
+      
+	<div id="footer-a">
+	  <center>
+      <ul>  
+        
+<li><a href="http://www.drdobbs.com/" class="first">Dr. Dobb's Home</a></li><li><a href="http://www.drdobbs.com/articles">Articles</a></li><li><a href="http://www.drdobbs.com/news">News</a></li><li><a href="http://www.drdobbs.com/blogs">Blogs</a></li><li><a href="http://www.drdobbs.com/sourcecode">Source Code</a></li><li><a href="http://www.drdobbs.com/tv">Dobb's TV</a></li><li><a href="http://www.informationweek.com/events/d/d-id/898857">Webinars &amp; Events</a></li>      </ul>
+	  </center>
+	</div>
+	  
+	<div id="footer-b">
+	  <center>
+      <ul> 
+        <li><a href="http://www.drdobbs.com/aboutus" class="first">About Us</a></li>
+        <li><a href="http://www.drdobbs.com/contactus">Contact Us</a></li>
+        <li><a href="http://www.drdobbs.com/sitemap">Site Map</a></li>
+        <li><a href="http://www.drdobbs.com/edcal">Editorial Calendar</a></li>
+     </ul>
+	  </center>
+	</div>
+  
+</div>
+<!-- END: Footer2 -->
+</div> 
+<!-- END: Footer -->
+
+</footer></div>
+</div>
+<br>
+
+
+<script type="text/javascript" language="JavaScript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/elqCfg.js"></script>
+<script type="text/javascript" language="JavaScript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/elqImg.js"></script>
+
+
+
+<!-- Ad Roll Retargeting Cookie added as per Loria 3/25/12 -->
+<script type="text/javascript">
+adroll_adv_id = "TQSV74R4GVCSJITSZC2MCP";
+adroll_pix_id = "ACPJ7LN56VBITNNAUDPDMG";
+(function () {
+var oldonload = window.onload;
+window.onload = function(){
+   __adroll_loaded=true;
+   var scr = document.createElement("script");
+   var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+   scr.setAttribute('async', 'true');
+   scr.type = "text/javascript";
+   scr.src = host + "/j/roundtrip.js";
+   ((document.getElementsByTagName('head') || [null])[0] ||
+    document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+   if(oldonload){oldonload()}};
+}());
+</script>
+<!-- /Ad Roll Retargeting Cookie -->
+
+		</div>
+		
+	
+
+
+ <script type="text/javascript">
+                           
+                var disqus_shortname = 'drdobbs';
+                                                var disqus_developer = 1;
+                                /* * * DON'T EDIT BELOW THIS LINE * * */
+                 (function () {
+                var s = document.createElement('script'); s.async = true;
+                  s.type = 'text/javascript';
+                 s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+                 (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+                 }());
+</script>
+<!-- SiteCatalyst code version: H.16.
+Copyright 1997-2008 Omniture, Inc. More info available at
+http://www.omniture.com -->
+
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/VisitorAPI.js"></script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/ubm-tech-global-app-measurement.js"></script>
+
+<script language="JavaScript" type="text/javascript">
+	var referer = '';
+	var eVar23 = '';
+	var slr="";	
+	var host="";	
+	var userAgent = '';
+	
+	$.ajax({
+	   type: "GET",
+	   url: host+"/omniture",
+	   data: "referer="+slr+encodeURIComponent(document.referrer),
+	   success: function(data){		   
+		   if (data != null)
+			{
+				referer = data.referer;
+				eVar23 = data.eVar23;	
+				userAgent = data.userAgent;					
+			}
+	   },
+	   dataType: "json",
+	   async: false,
+	   cache: false
+	 }	
+	 );
+	
+	 
+</script>
+
+<script language="JavaScript" type="text/javascript">
+<!--	
+s.pageURL="http://www.drdobbs.com/cpp/cruising-with-topspeed/184408335";
+s.pageName="";
+s.referrer=referer;
+s.server="";
+s.channel="drdobbs.com.com/cpp";
+s.pageType="";
+s.prop1="";
+s.prop2="184408335";
+s.prop3="Dr. Dobb's Journal | 184408335 | Cruising With Topspeed";
+s.prop4="Cruising With Topspeed";
+s.prop5="cpp";
+s.prop6="";
+s.prop7="Alex Lane";
+s.prop8=userAgent;
+s.prop9="";
+s.prop10="complete";
+s.prop11="Feature";
+s.prop12="";
+s.prop14="";
+s.prop15="";
+s.prop16="";
+s.prop19="False";
+s.prop20="19900401";
+s.prop21="";
+
+/* Conversion Variables */
+s.campaign="";
+s.state="";
+s.zip="";
+s.events="";
+s.products="";
+s.purchaseID="";
+s.eVar1="";
+s.eVar2="";
+s.eVar3="";
+s.eVar4="";
+s.eVar5="";
+s.eVar6="";
+s.eVar8="";
+s.eVar21="";
+s.eVar22="";
+s.eVar23=eVar23;
+s.eVar31="Related Reading|Insights|Events|Reports|Whitepapers";
+
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)//-->	
+</script>
+
+<noscript><a href="http://www.omniture.com/" title="Web Analytics"><img src="./Cruising With Topspeed | Dr Dobb&#39;s_files/0" height="1" width="1" border="0" alt="" hidden="" style="display: none !important;"></a></noscript><!--/DO NOT REMOVE/-->
+
+<script language="JavaScript" type="text/javascript">
+	function trackComment(){
+        var s=s_gi('cmpglobalvista'); 
+        s.evar24=s.prop7 +" | "+ s.prop4;  
+	    s.events='event8';
+	    s.tl(this,'o','Article Comment Posted'); 
+   }
+</script>
+
+<!-- End SiteCatalyst code version: H.16  --><!-- Google Code for Remarketing Tag -->
+<!--------------------------------------------------
+Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+--------------------------------------------------->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1007530244;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/f.txt">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style: none; display: none !important;" alt="" src="./Cruising With Topspeed | Dr Dobb&#39;s_files/saved_resource" hidden="">
+</div>
+</noscript>
+
+</body></html>
